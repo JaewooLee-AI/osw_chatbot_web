@@ -1,12 +1,5 @@
 import { createClient, SupabaseClient } from "@supabase/supabase-js";
 
-const SUPABASE_URL = (process.env.SUPABASE_URL || "").trim().replace(/\/+$/, "");
-const SUPABASE_SERVICE_KEY = (
-  process.env.SUPABASE_service_role ||
-  process.env.SUPABASE_SERVICE_ROLE_KEY ||
-  ""
-).trim();
-
 export const DEFAULT_BRAND = (process.env.BRAND || "japan").trim();
 export const DEFAULT_BRAND_NAME = (process.env.BRAND_NAME || "일본스토리").trim();
 
@@ -22,6 +15,26 @@ const DEFAULT_MODELS: Record<string, string> = {
 };
 
 let _client: SupabaseClient | null = null;
+
+/**
+ * 질문마다 반복되는 설정·모델·키 조회를 서버 메모리에 잠깐 기억한다(서버리스 인스턴스마다 따로).
+ * 관리자 앱에서 바꾼 값은 최대 CACHE_TTL_MS 뒤에 반영된다. 실패한 조회는 기억하지 않는다.
+ */
+const CACHE_TTL_MS = 60_000;
+const _cache = new Map<string, { at: number; value: Promise<unknown> }>();
+
+function cached<T>(key: string, load: () => Promise<T>): Promise<T> {
+  const hit = _cache.get(key);
+  if (hit && Date.now() - hit.at < CACHE_TTL_MS) {
+    return hit.value as Promise<T>;
+  }
+  const value = load();
+  _cache.set(key, { at: Date.now(), value });
+  value.catch(() => {
+    if (_cache.get(key)?.value === value) _cache.delete(key);
+  });
+  return value;
+}
 
 export function getSupabaseClient(): SupabaseClient {
   const url = (process.env.SUPABASE_URL || "").trim().replace(/\/+$/, "");
@@ -93,7 +106,11 @@ export interface MatchedDocument {
   match_source: "vector" | "keyword";
 }
 
-export async function getSettings(brand: string = DEFAULT_BRAND): Promise<BotSettings> {
+export function getSettings(brand: string = DEFAULT_BRAND): Promise<BotSettings> {
+  return cached(`settings:${brand}`, () => loadSettings(brand));
+}
+
+async function loadSettings(brand: string): Promise<BotSettings> {
   const sb = getSupabaseClient();
   const { data, error } = await sb
     .from("bot_settings")
@@ -125,7 +142,11 @@ export async function getSettings(brand: string = DEFAULT_BRAND): Promise<BotSet
   };
 }
 
-export async function getProviderModel(vendor: string): Promise<string> {
+export function getProviderModel(vendor: string): Promise<string> {
+  return cached(`model:${vendor}`, () => loadProviderModel(vendor));
+}
+
+async function loadProviderModel(vendor: string): Promise<string> {
   const sb = getSupabaseClient();
   try {
     const { data, error } = await sb
@@ -142,7 +163,11 @@ export async function getProviderModel(vendor: string): Promise<string> {
   return DEFAULT_MODELS[vendor] || "gemini-3.5-flash-lite";
 }
 
-export async function getApiKey(vendor: string): Promise<string> {
+export function getApiKey(vendor: string): Promise<string> {
+  return cached(`key:${vendor}`, () => loadApiKey(vendor));
+}
+
+async function loadApiKey(vendor: string): Promise<string> {
   const sb = getSupabaseClient();
   try {
     const { data, error } = await sb.rpc("get_llm_api_key", {
@@ -210,33 +235,37 @@ export async function getImages(
   }
 }
 
+export type FallbackChannel = "web" | "kakao" | "simulator";
+
 export async function logFallback(record: {
   brand: string;
-  channel?: string;
+  channel?: FallbackChannel;
   user_query: string;
   bot_answer?: string;
   top_similarity?: number;
   top_source_id?: string | null;
   failure_type?: string | null;
 }): Promise<void> {
-  const sb = getSupabaseClient();
-  // DB check 제약조건 호환: ('kakao', 'simulator')
-  const safeChannel =
-    record.channel === "kakao" || record.channel === "simulator"
-      ? record.channel
-      : "simulator";
-
+  const row = {
+    brand: record.brand,
+    channel: record.channel || "web",
+    user_query: record.user_query,
+    bot_answer: record.bot_answer || "",
+    top_similarity: record.top_similarity ?? 0,
+    top_source_id: record.top_source_id ?? null,
+    failure_type: record.failure_type ?? null,
+  };
   try {
-    await sb.from("fallback_logs").insert({
-      brand: record.brand,
-      channel: safeChannel,
-      user_query: record.user_query,
-      bot_answer: record.bot_answer || "",
-      top_similarity: record.top_similarity ?? 0,
-      top_source_id: record.top_source_id ?? null,
-      failure_type: record.failure_type ?? null,
-    });
-  } catch {
+    const sb = getSupabaseClient();
+    const { error } = await sb.from("fallback_logs").insert(row);
+    // 006_web_channel.sql 실행 전에는 'web'이 채널 제약(23514)에 걸린다 → 예전처럼 'simulator'로 남겨 기록을 잃지 않는다.
+    if (error?.code === "23514" && row.channel === "web") {
+      await sb.from("fallback_logs").insert({ ...row, channel: "simulator" });
+    } else if (error) {
+      console.error("[fallback_logs] 기록 실패:", error.message);
+    }
+  } catch (err: any) {
     // 로깅 실패가 사용자 응답을 막지 않도록 무시
+    console.error("[fallback_logs] 기록 실패:", err?.message || err);
   }
 }

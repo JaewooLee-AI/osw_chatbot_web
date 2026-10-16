@@ -5,6 +5,10 @@ import { DEFAULT_BRAND, getSettings } from "@/lib/supabase";
 
 const KAKAO_FALLBACK_URL = "https://pf.kakao.com/_VjxbnC/chat";
 
+// vercel.json maxDuration(30초) 안에 반드시 JSON으로 답하도록, AI 호출은 요청 시작 후 이 시간 안에 끝낸다.
+// 남는 몇 초는 설정·검색·기록(Supabase)에 쓴다. 넘기면 상담 연결 안내로 끝난다.
+const ANSWER_DEADLINE_MS = 24_000;
+
 function blocked(text: string, status: number) {
   return NextResponse.json(
     {
@@ -42,6 +46,7 @@ export async function OPTIONS(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
+  const deadline = Date.now() + ANSWER_DEADLINE_MS;
   if (!isAllowedOrigin(req)) {
     return blocked("허용되지 않은 사이트에서의 요청입니다.", 403);
   }
@@ -97,6 +102,7 @@ export async function POST(req: NextRequest) {
       travelTypes,
       history,
       log: true,
+      deadline,
     });
 
     return NextResponse.json({
@@ -110,6 +116,8 @@ export async function POST(req: NextRequest) {
       buttons: ans.buttons,
     });
   } catch (err: any) {
+    // 오류 내용은 서버 로그(Vercel)에만 남기고 방문자에게는 보내지 않는다.
+    console.error("[api/chat] 처리 실패:", err?.message || err);
     return NextResponse.json(
       {
         text: "일시적인 오류가 발생했습니다. 잠시 후 다시 시도해 주시거나 아래 카카오톡 상담을 이용해 주세요.",
@@ -126,7 +134,6 @@ export async function POST(req: NextRequest) {
             url: KAKAO_FALLBACK_URL,
           },
         ],
-        error: err?.message || String(err),
       },
       { status: 200 }
     );

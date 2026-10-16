@@ -61,6 +61,7 @@ export async function GET(req: NextRequest) {
       homepage: handoff.homepage || "https://japan.onlytour.co.kr",
     });
   } catch (err: any) {
+    console.error("[api/config] 설정 조회 실패:", err?.message || err);
     return NextResponse.json(
       {
         brand,
@@ -70,7 +71,6 @@ export async function GET(req: NextRequest) {
         operating_hours: "평일 09:30~17:30 (점심 12:30~13:30 · 주말/공휴일 휴무)",
         kakao_chat_url: "https://pf.kakao.com/_VjxbnC/chat",
         homepage: "https://japan.onlytour.co.kr",
-        error: err?.message,
       },
       { status: 200 }
     );
