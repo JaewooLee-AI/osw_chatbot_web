@@ -1,0 +1,26 @@
+# 웹 챗봇 검사 — PR과 main push마다 타입 검사 · 답변 규칙 테스트 · 빌드를 돌린다.
+# 답변 규칙 테스트(tests/parity.test.ts)는 관리자 앱(osw_chatbot_admin)과 같은 공통 케이스(tests/parity_cases.json)를 쓴다.
+# 배포는 Vercel이 따로 한다(이 워크플로는 배포하지 않는다). 비밀 값은 쓰지 않는다.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Type check
+        run: npm run typecheck
+      - name: Answer rule tests (same cases as osw_chatbot_admin)
+        run: npm test
+      - name: Build
+        run: npm run build

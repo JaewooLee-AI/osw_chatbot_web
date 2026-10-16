@@ -26,6 +26,16 @@ export function docKey(doc: MatchedDocument): string | null {
 }
 
 /**
+ * Python urllib.parse.quote(값)과 같은 인코딩(관리자 앱 handoff.py와 같은 주소가 나오게).
+ * encodeURIComponent는 ( ) ! ' * 를 그대로 두고 / 를 바꾸지만, quote는 반대다.
+ */
+function quote(value: string): string {
+  return encodeURIComponent(value)
+    .replace(/[!'()*]/g, (c) => "%" + c.charCodeAt(0).toString(16).toUpperCase())
+    .replace(/%2F/g, "/");
+}
+
+/**
  * 구글 폼 미리 채움 주소. 폼 주소·항목 ID는 코드에 두지 않고 DB(bot_settings.handoff.form)만 따른다.
  * 관리자 앱이 폼정의.xlsx에서 가져올 때 주소·항목 ID가 모두 갖춰졌으면 ready=true로 저장한다.
  * ready가 아니면 버튼을 숨긴다 — 관리자 [챗봇 테스트]와 같은 규칙(handoff.py form_url).
@@ -49,7 +59,7 @@ export function formUrl(
 
   const query = params
     .filter(([id, val]) => Boolean(id && val))
-    .map(([id, val]) => `&entry.${id}=${encodeURIComponent(val)}`)
+    .map(([id, val]) => `&entry.${id}=${quote(val)}`)
     .join("");
 
   return form.url + (query ? `?usp=pp_url${query}` : "");
