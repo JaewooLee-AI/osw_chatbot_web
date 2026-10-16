@@ -13,9 +13,6 @@ export interface HandoffButton {
   url: string;
 }
 
-export const DEFAULT_FORM_URL =
-  "https://docs.google.com/forms/d/e/1FAIpQLSdY4J8dEgdM0MII9pRBVEb0GXUZKbC8x3pCYcwASBE-ZUQwtw/viewform";
-
 export function docKey(doc: MatchedDocument): string | null {
   const t = doc.travel_type || "";
   const d = doc.destination || "";
@@ -28,27 +25,26 @@ export function docKey(doc: MatchedDocument): string | null {
   return null;
 }
 
+/**
+ * 구글 폼 미리 채움 주소. 폼 주소·항목 ID는 코드에 두지 않고 DB(bot_settings.handoff.form)만 따른다.
+ * 관리자 앱이 폼정의.xlsx에서 가져올 때 주소·항목 ID가 모두 갖춰졌으면 ready=true로 저장한다.
+ * ready가 아니면 버튼을 숨긴다 — 관리자 [챗봇 테스트]와 같은 규칙(handoff.py form_url).
+ */
 export function formUrl(
   handoff: HandoffConfig | undefined,
   key: string | null
 ): string {
   const form = handoff?.form;
-  const baseUrl = form?.url || DEFAULT_FORM_URL;
-  if (!baseUrl) {
+  if (!form || !form.ready || !form.url) {
     return "";
   }
-  const prefillMap = form?.prefill || {};
-  const pair =
-    (key ? prefillMap[key] : undefined) ||
-    prefillMap["기본"] || [
-      "",
-      "",
-    ];
-  const [ftype, fregion] = pair;
+  const prefillMap = form.prefill || {};
+  const [ftype, fregion] =
+    prefillMap[key || "기본"] || prefillMap["기본"] || ["", ""];
 
   const params: Array<[string | undefined, string]> = [
-    [form?.entry_travel_type, ftype],
-    [form?.entry_region, fregion],
+    [form.entry_travel_type, ftype],
+    [form.entry_region, fregion],
   ];
 
   const query = params
@@ -56,11 +52,11 @@ export function formUrl(
     .map(([id, val]) => `&entry.${id}=${encodeURIComponent(val)}`)
     .join("");
 
-  return baseUrl + (query ? `?usp=pp_url${query}` : "");
+  return form.url + (query ? `?usp=pp_url${query}` : "");
 }
 
 /**
- * 답변 아래 상담 연결 버튼 생성 규칙 (osw_chatbot_admin/osw_admin/handoff.py 와 100% 동일)
+ * 답변 아래 상담 연결 버튼 생성 규칙 (osw_chatbot_admin/osw_admin/handoff.py buttons()와 같은 규칙)
  */
 export function buildHandoffButtons(
   handoff: HandoffConfig | undefined,

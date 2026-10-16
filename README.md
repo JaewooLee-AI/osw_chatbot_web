@@ -44,6 +44,16 @@ npm run dev
    - `SUPABASE_annon`: `(anon 키 값 - 선택)`
 3. 배포가 완료되면 서울 리전(`icn1`, `vercel.json` 설정됨)에서 서버리스 API가 즉시 동작합니다.
 
+### API 보호 (`/api/chat`)
+
+- **출처 확인**: 위젯(`/widget`)은 같은 배포 도메인의 `/api/chat`을 부르므로 다른 사이트에서의 브라우저 호출은 403으로 막습니다. 다른 도메인에서 API를 직접 불러야 할 때만 `ALLOWED_ORIGINS`(쉼표 구분, 예: `https://japan.onlytour.co.kr`)를 설정합니다.
+- **호출 횟수 제한**: 방문자(IP 해시)마다 분당 `CHAT_RATE_PER_MINUTE`(기본 10), 하루 `CHAT_RATE_PER_DAY`(기본 150)회. 초과하면 429와 카카오톡 상담 안내를 돌려줍니다.
+  - Supabase SQL Editor에서 `osw_chatbot_admin/supabase/005_rate_limit.sql`을 **먼저 한 번 실행**해야 동작합니다. 실행 전에는 제한 없이 통과하며 Vercel 로그에 `[rate-limit]` 경고가 남습니다.
+
+### 상담 요청서(구글 폼) 버튼
+
+폼 주소·항목 ID는 코드에 두지 않고 DB `bot_settings.handoff.form`을 따릅니다(관리자 앱 [챗봇 테스트]와 같은 규칙). 운영 폼으로 바꾸려면 `osw_chatbot`의 `폼정의.xlsx` '폼설정'에 운영 폼 응답 주소·항목 ID를 적고, 관리자 앱 **[챗봇 설정 → 폼정의·운영정보에서 가져오기]**를 누릅니다. 폼이 준비되지 않았으면(ready=false) 버튼을 숨깁니다.
+
 ---
 
 ## 4. 고객사 홈페이지 탑재 코드 (`embed.js`)
