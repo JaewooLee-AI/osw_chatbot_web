@@ -35,6 +35,19 @@ npm run dev
 
 ---
 
+### 테스트
+
+```bash
+npm run typecheck   # 타입 검사
+npm test            # 답변 규칙 테스트 (관리자 앱과 같은 공통 케이스)
+```
+
+- `tests/parity_cases.json`은 관리자 앱(`osw_chatbot_admin`)의 `tools/build_parity_cases.py`가 관리자 규칙으로 만든 기대값입니다. 두 저장소에 **같은 파일**을 두고 양쪽 테스트가 같은 케이스로 검사하므로, 한쪽만 규칙(말투·여행지 판정·가격표 거르기·상담 버튼 등)을 바꾸면 테스트가 실패합니다.
+- 규칙을 일부러 바꿀 때: 양쪽 코드를 함께 고치고 → 관리자 저장소에서 `python3 tools/build_parity_cases.py` → 만들어진 파일을 이 저장소 `tests/`에 복사합니다.
+- GitHub Actions(`.github/workflows/ci.yml`)가 PR·main push마다 타입 검사·테스트·빌드를 돌립니다.
+
+---
+
 ## 3. Vercel 배포 방법
 
 1. GitHub 저장소에 프로젝트를 푸시하거나 Vercel CLI(`npx vercel`)를 실행합니다.

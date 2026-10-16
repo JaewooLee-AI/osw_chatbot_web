@@ -182,8 +182,13 @@
   var pill = document.createElement("button");
   pill.type = "button";
   pill.className = "osw-cb-launcher-pill";
-  pill.innerHTML =
-    '<span class="osw-cb-dot"></span><span>' + labelText + "</span>";
+  // data-label 값은 글자로만 넣는다(HTML로 해석하지 않는다).
+  var dot = document.createElement("span");
+  dot.className = "osw-cb-dot";
+  var labelSpan = document.createElement("span");
+  labelSpan.textContent = labelText;
+  pill.appendChild(dot);
+  pill.appendChild(labelSpan);
 
   var fab = document.createElement("button");
   fab.type = "button";
@@ -240,6 +245,8 @@
   });
 
   window.addEventListener("message", function (event) {
+    // 챗봇 iframe이 보낸 메시지만 받는다(호스트 페이지의 다른 스크립트·iframe이 열고 닫지 못하게).
+    if (event.source !== iframe.contentWindow || event.origin !== baseUrl) return;
     if (event.data && event.data.type === "OSW_CHATBOT_CLOSE") {
       setOpen(false);
     } else if (event.data && event.data.type === "OSW_CHATBOT_OPEN") {

@@ -15,7 +15,7 @@ const VERIFY_PENDING = "확인필요";
 
 // 관리자 앱(osw_chatbot_admin/osw_admin/rag.py TONES)과 글자 하나까지 같아야 한다.
 // 말투는 관리자 [챗봇 설정]에서 이 목록 중 하나로만 저장된다.
-const TONES: Record<string, string> = {
+export const TONES: Record<string, string> = {
   "친절한 상담원": "친절하고 공손한 여행 상담원 말투로, 짧은 문단과 줄바꿈을 써서 답하세요.",
   "간결한 안내": "핵심만 간결하게, 필요한 경우 목록으로 답하세요.",
   "따뜻한 가족여행 상담":
@@ -76,6 +76,8 @@ export function cleanAnswer(text: string): string {
     .trim();
 }
 
+// 이어 묻기 풀어쓰기에 쓰는 AI (답변 AI 설정과 무관)
+const REWRITE_PROVIDER = "gemini";
 const HISTORY_TURNS = 3;
 // 이어 묻기 풀어쓰기는 실패해도 원문으로 계속하므로, 이 단계에는 시간을 조금만 준다.
 const REWRITE_BUDGET_MS = 7000;
@@ -123,7 +125,9 @@ ${lines.join("\n")}
 [현재 질문]
 ${question}`;
 
-  const provider = settings.answer_provider || "gemini";
+  // 한 문장 풀어쓰기라 답변 AI(예: Claude Opus)까지 쓸 필요가 없다. 임베딩에 이미 필요한 Gemini 키로
+  // Gemini 답변 모델(가벼운 flash-lite 계열)을 쓴다. 관리자 앱(rag.py REWRITE_PROVIDER)도 같은 규칙이다.
+  const provider = REWRITE_PROVIDER;
   try {
     const [model, key] = await Promise.all([
       getProviderModel(provider),

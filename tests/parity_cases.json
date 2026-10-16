@@ -1,0 +1,7846 @@
+{
+ "_about": "관리자 앱 규칙으로 만든 기대값. tools/build_parity_cases.py가 생성한다 — 직접 고치지 않는다. osw_chatbot_admin/tests/parity_cases.json 과 osw_chatbot_web/tests/parity_cases.json 은 같은 파일이어야 한다.",
+ "tones": {
+  "친절한 상담원": "친절하고 공손한 여행 상담원 말투로, 짧은 문단과 줄바꿈을 써서 답하세요.",
+  "간결한 안내": "핵심만 간결하게, 필요한 경우 목록으로 답하세요.",
+  "따뜻한 가족여행 상담": "가족여행을 준비하는 고객에게 공감하는 따뜻한 말투로 답하되, 사실은 정확히 전달하세요."
+ },
+ "clarify_text": "어느 여행지(상품)를 생각하고 계신가요?\n여행지와 박수·인원을 함께 알려 주시면 요금을 안내드립니다. 예) 오사카 3박4일 4명, 스기노이 호텔 소라관",
+ "place_tokens": [
+  {
+   "doc": {
+    "destination": "벳푸 스기노이 호텔",
+    "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+    "category": "가격_스기노이",
+    "travel_type": "스기노이호텔"
+   },
+   "expected": [
+    "벳푸",
+    "스기노이",
+    "소라관",
+    "호시관",
+    "니지관"
+   ]
+  },
+  {
+   "doc": {
+    "destination": "벳푸 스기노이 호텔",
+    "title": "스기노이 호텔 소라관 객실 요금",
+    "category": "가격_스기노이",
+    "travel_type": "스기노이호텔"
+   },
+   "expected": [
+    "벳푸",
+    "스기노이",
+    "소라관"
+   ]
+  },
+  {
+   "doc": {
+    "destination": "오사카·교토·고베",
+    "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+    "category": "가격_패키지",
+    "travel_type": "단독패키지"
+   },
+   "expected": [
+    "오사카",
+    "교토",
+    "고베"
+   ]
+  },
+  {
+   "doc": {
+    "destination": "큐슈 (벳푸·유후인·구마모토)",
+    "title": "큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+    "category": "가격_패키지",
+    "travel_type": "단독패키지"
+   },
+   "expected": [
+    "큐슈",
+    "벳푸",
+    "유후인",
+    "구마모토"
+   ]
+  },
+  {
+   "doc": {
+    "destination": "후쿠오카·기타큐슈",
+    "title": "후쿠오카·기타큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+    "category": "가격_패키지",
+    "travel_type": "단독패키지"
+   },
+   "expected": [
+    "후쿠오카",
+    "기타큐슈"
+   ]
+  },
+  {
+   "doc": {
+    "destination": "삿포로",
+    "title": "삿포로 일일투어 요금",
+    "category": "가격_일일투어",
+    "travel_type": "일일투어"
+   },
+   "expected": [
+    "삿포로"
+   ]
+  },
+  {
+   "doc": {
+    "destination": "오사카",
+    "title": "일일관광 투어 박물관견학 안내",
+    "category": "가격_일일투어",
+    "travel_type": "일일투어"
+   },
+   "expected": [
+    "오사카"
+   ]
+  },
+  {
+   "doc": {
+    "destination": "",
+    "title": "패키지 취소 규정 — 공통 사항",
+    "category": "취소규정",
+    "travel_type": "단독패키지"
+   },
+   "expected": []
+  }
+ ],
+ "mentions_destination": [
+  {
+   "query": "호시관 석식 포함인가요?",
+   "doc": {
+    "destination": "벳푸 스기노이 호텔",
+    "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+    "category": "가격_스기노이",
+    "travel_type": "스기노이호텔"
+   },
+   "expected": true
+  },
+  {
+   "query": "호시관 석식 포함인가요?",
+   "doc": {
+    "destination": "벳푸 스기노이 호텔",
+    "title": "스기노이 호텔 소라관 객실 요금",
+    "category": "가격_스기노이",
+    "travel_type": "스기노이호텔"
+   },
+   "expected": false
+  },
+  {
+   "query": "호시관 석식 포함인가요?",
+   "doc": {
+    "destination": "오사카·교토·고베",
+    "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+    "category": "가격_패키지",
+    "travel_type": "단독패키지"
+   },
+   "expected": false
+  },
+  {
+   "query": "호시관 석식 포함인가요?",
+   "doc": {
+    "destination": "큐슈 (벳푸·유후인·구마모토)",
+    "title": "큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+    "category": "가격_패키지",
+    "travel_type": "단독패키지"
+   },
+   "expected": false
+  },
+  {
+   "query": "호시관 석식 포함인가요?",
+   "doc": {
+    "destination": "후쿠오카·기타큐슈",
+    "title": "후쿠오카·기타큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+    "category": "가격_패키지",
+    "travel_type": "단독패키지"
+   },
+   "expected": false
+  },
+  {
+   "query": "호시관 석식 포함인가요?",
+   "doc": {
+    "destination": "삿포로",
+    "title": "삿포로 일일투어 요금",
+    "category": "가격_일일투어",
+    "travel_type": "일일투어"
+   },
+   "expected": false
+  },
+  {
+   "query": "호시관 석식 포함인가요?",
+   "doc": {
+    "destination": "오사카",
+    "title": "일일관광 투어 박물관견학 안내",
+    "category": "가격_일일투어",
+    "travel_type": "일일투어"
+   },
+   "expected": false
+  },
+  {
+   "query": "소라관 석식 포함인가요?",
+   "doc": {
+    "destination": "벳푸 스기노이 호텔",
+    "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+    "category": "가격_스기노이",
+    "travel_type": "스기노이호텔"
+   },
+   "expected": true
+  },
+  {
+   "query": "소라관 석식 포함인가요?",
+   "doc": {
+    "destination": "벳푸 스기노이 호텔",
+    "title": "스기노이 호텔 소라관 객실 요금",
+    "category": "가격_스기노이",
+    "travel_type": "스기노이호텔"
+   },
+   "expected": true
+  },
+  {
+   "query": "소라관 석식 포함인가요?",
+   "doc": {
+    "destination": "오사카·교토·고베",
+    "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+    "category": "가격_패키지",
+    "travel_type": "단독패키지"
+   },
+   "expected": false
+  },
+  {
+   "query": "소라관 석식 포함인가요?",
+   "doc": {
+    "destination": "큐슈 (벳푸·유후인·구마모토)",
+    "title": "큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+    "category": "가격_패키지",
+    "travel_type": "단독패키지"
+   },
+   "expected": false
+  },
+  {
+   "query": "소라관 석식 포함인가요?",
+   "doc": {
+    "destination": "후쿠오카·기타큐슈",
+    "title": "후쿠오카·기타큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+    "category": "가격_패키지",
+    "travel_type": "단독패키지"
+   },
+   "expected": false
+  },
+  {
+   "query": "소라관 석식 포함인가요?",
+   "doc": {
+    "destination": "삿포로",
+    "title": "삿포로 일일투어 요금",
+    "category": "가격_일일투어",
+    "travel_type": "일일투어"
+   },
+   "expected": false
+  },
+  {
+   "query": "소라관 석식 포함인가요?",
+   "doc": {
+    "destination": "오사카",
+    "title": "일일관광 투어 박물관견학 안내",
+    "category": "가격_일일투어",
+    "travel_type": "일일투어"
+   },
+   "expected": false
+  },
+  {
+   "query": "니지관 조식 있어요?",
+   "doc": {
+    "destination": "벳푸 스기노이 호텔",
+    "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+    "category": "가격_스기노이",
+    "travel_type": "스기노이호텔"
+   },
+   "expected": true
+  },
+  {
+   "query": "니지관 조식 있어요?",
+   "doc": {
+    "destination": "벳푸 스기노이 호텔",
+    "title": "스기노이 호텔 소라관 객실 요금",
+    "category": "가격_스기노이",
+    "travel_type": "스기노이호텔"
+   },
+   "expected": false
+  },
+  {
+   "query": "니지관 조식 있어요?",
+   "doc": {
+    "destination": "오사카·교토·고베",
+    "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+    "category": "가격_패키지",
+    "travel_type": "단독패키지"
+   },
+   "expected": false
+  },
+  {
+   "query": "니지관 조식 있어요?",
+   "doc": {
+    "destination": "큐슈 (벳푸·유후인·구마모토)",
+    "title": "큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+    "category": "가격_패키지",
+    "travel_type": "단독패키지"
+   },
+   "expected": false
+  },
+  {
+   "query": "니지관 조식 있어요?",
+   "doc": {
+    "destination": "후쿠오카·기타큐슈",
+    "title": "후쿠오카·기타큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+    "category": "가격_패키지",
+    "travel_type": "단독패키지"
+   },
+   "expected": false
+  },
+  {
+   "query": "니지관 조식 있어요?",
+   "doc": {
+    "destination": "삿포로",
+    "title": "삿포로 일일투어 요금",
+    "category": "가격_일일투어",
+    "travel_type": "일일투어"
+   },
+   "expected": false
+  },
+  {
+   "query": "니지관 조식 있어요?",
+   "doc": {
+    "destination": "오사카",
+    "title": "일일관광 투어 박물관견학 안내",
+    "category": "가격_일일투어",
+    "travel_type": "일일투어"
+   },
+   "expected": false
+  },
+  {
+   "query": "스기노이 소라관 요금",
+   "doc": {
+    "destination": "벳푸 스기노이 호텔",
+    "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+    "category": "가격_스기노이",
+    "travel_type": "스기노이호텔"
+   },
+   "expected": true
+  },
+  {
+   "query": "스기노이 소라관 요금",
+   "doc": {
+    "destination": "벳푸 스기노이 호텔",
+    "title": "스기노이 호텔 소라관 객실 요금",
+    "category": "가격_스기노이",
+    "travel_type": "스기노이호텔"
+   },
+   "expected": true
+  },
+  {
+   "query": "스기노이 소라관 요금",
+   "doc": {
+    "destination": "오사카·교토·고베",
+    "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+    "category": "가격_패키지",
+    "travel_type": "단독패키지"
+   },
+   "expected": false
+  },
+  {
+   "query": "스기노이 소라관 요금",
+   "doc": {
+    "destination": "큐슈 (벳푸·유후인·구마모토)",
+    "title": "큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+    "category": "가격_패키지",
+    "travel_type": "단독패키지"
+   },
+   "expected": false
+  },
+  {
+   "query": "스기노이 소라관 요금",
+   "doc": {
+    "destination": "후쿠오카·기타큐슈",
+    "title": "후쿠오카·기타큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+    "category": "가격_패키지",
+    "travel_type": "단독패키지"
+   },
+   "expected": false
+  },
+  {
+   "query": "스기노이 소라관 요금",
+   "doc": {
+    "destination": "삿포로",
+    "title": "삿포로 일일투어 요금",
+    "category": "가격_일일투어",
+    "travel_type": "일일투어"
+   },
+   "expected": false
+  },
+  {
+   "query": "스기노이 소라관 요금",
+   "doc": {
+    "destination": "오사카",
+    "title": "일일관광 투어 박물관견학 안내",
+    "category": "가격_일일투어",
+    "travel_type": "일일투어"
+   },
+   "expected": false
+  },
+  {
+   "query": "오사가 3박4일 4명",
+   "doc": {
+    "destination": "벳푸 스기노이 호텔",
+    "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+    "category": "가격_스기노이",
+    "travel_type": "스기노이호텔"
+   },
+   "expected": false
+  },
+  {
+   "query": "오사가 3박4일 4명",
+   "doc": {
+    "destination": "벳푸 스기노이 호텔",
+    "title": "스기노이 호텔 소라관 객실 요금",
+    "category": "가격_스기노이",
+    "travel_type": "스기노이호텔"
+   },
+   "expected": false
+  },
+  {
+   "query": "오사가 3박4일 4명",
+   "doc": {
+    "destination": "오사카·교토·고베",
+    "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+    "category": "가격_패키지",
+    "travel_type": "단독패키지"
+   },
+   "expected": true
+  },
+  {
+   "query": "오사가 3박4일 4명",
+   "doc": {
+    "destination": "큐슈 (벳푸·유후인·구마모토)",
+    "title": "큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+    "category": "가격_패키지",
+    "travel_type": "단독패키지"
+   },
+   "expected": false
+  },
+  {
+   "query": "오사가 3박4일 4명",
+   "doc": {
+    "destination": "후쿠오카·기타큐슈",
+    "title": "후쿠오카·기타큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+    "category": "가격_패키지",
+    "travel_type": "단독패키지"
+   },
+   "expected": false
+  },
+  {
+   "query": "오사가 3박4일 4명",
+   "doc": {
+    "destination": "삿포로",
+    "title": "삿포로 일일투어 요금",
+    "category": "가격_일일투어",
+    "travel_type": "일일투어"
+   },
+   "expected": false
+  },
+  {
+   "query": "오사가 3박4일 4명",
+   "doc": {
+    "destination": "오사카",
+    "title": "일일관광 투어 박물관견학 안내",
+    "category": "가격_일일투어",
+    "travel_type": "일일투어"
+   },
+   "expected": true
+  },
+  {
+   "query": "후쿠오까 2박3일",
+   "doc": {
+    "destination": "벳푸 스기노이 호텔",
+    "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+    "category": "가격_스기노이",
+    "travel_type": "스기노이호텔"
+   },
+   "expected": false
+  },
+  {
+   "query": "후쿠오까 2박3일",
+   "doc": {
+    "destination": "벳푸 스기노이 호텔",
+    "title": "스기노이 호텔 소라관 객실 요금",
+    "category": "가격_스기노이",
+    "travel_type": "스기노이호텔"
+   },
+   "expected": false
+  },
+  {
+   "query": "후쿠오까 2박3일",
+   "doc": {
+    "destination": "오사카·교토·고베",
+    "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+    "category": "가격_패키지",
+    "travel_type": "단독패키지"
+   },
+   "expected": false
+  },
+  {
+   "query": "후쿠오까 2박3일",
+   "doc": {
+    "destination": "큐슈 (벳푸·유후인·구마모토)",
+    "title": "큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+    "category": "가격_패키지",
+    "travel_type": "단독패키지"
+   },
+   "expected": false
+  },
+  {
+   "query": "후쿠오까 2박3일",
+   "doc": {
+    "destination": "후쿠오카·기타큐슈",
+    "title": "후쿠오카·기타큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+    "category": "가격_패키지",
+    "travel_type": "단독패키지"
+   },
+   "expected": true
+  },
+  {
+   "query": "후쿠오까 2박3일",
+   "doc": {
+    "destination": "삿포로",
+    "title": "삿포로 일일투어 요금",
+    "category": "가격_일일투어",
+    "travel_type": "일일투어"
+   },
+   "expected": false
+  },
+  {
+   "query": "후쿠오까 2박3일",
+   "doc": {
+    "destination": "오사카",
+    "title": "일일관광 투어 박물관견학 안내",
+    "category": "가격_일일투어",
+    "travel_type": "일일투어"
+   },
+   "expected": false
+  },
+  {
+   "query": "그럼 6명은요?",
+   "doc": {
+    "destination": "벳푸 스기노이 호텔",
+    "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+    "category": "가격_스기노이",
+    "travel_type": "스기노이호텔"
+   },
+   "expected": false
+  },
+  {
+   "query": "그럼 6명은요?",
+   "doc": {
+    "destination": "벳푸 스기노이 호텔",
+    "title": "스기노이 호텔 소라관 객실 요금",
+    "category": "가격_스기노이",
+    "travel_type": "스기노이호텔"
+   },
+   "expected": false
+  },
+  {
+   "query": "그럼 6명은요?",
+   "doc": {
+    "destination": "오사카·교토·고베",
+    "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+    "category": "가격_패키지",
+    "travel_type": "단독패키지"
+   },
+   "expected": false
+  },
+  {
+   "query": "그럼 6명은요?",
+   "doc": {
+    "destination": "큐슈 (벳푸·유후인·구마모토)",
+    "title": "큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+    "category": "가격_패키지",
+    "travel_type": "단독패키지"
+   },
+   "expected": false
+  },
+  {
+   "query": "그럼 6명은요?",
+   "doc": {
+    "destination": "후쿠오카·기타큐슈",
+    "title": "후쿠오카·기타큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+    "category": "가격_패키지",
+    "travel_type": "단독패키지"
+   },
+   "expected": false
+  },
+  {
+   "query": "그럼 6명은요?",
+   "doc": {
+    "destination": "삿포로",
+    "title": "삿포로 일일투어 요금",
+    "category": "가격_일일투어",
+    "travel_type": "일일투어"
+   },
+   "expected": false
+  },
+  {
+   "query": "그럼 6명은요?",
+   "doc": {
+    "destination": "오사카",
+    "title": "일일관광 투어 박물관견학 안내",
+    "category": "가격_일일투어",
+    "travel_type": "일일투어"
+   },
+   "expected": false
+  },
+  {
+   "query": "벳뿌 골프 3박4일",
+   "doc": {
+    "destination": "벳푸 스기노이 호텔",
+    "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+    "category": "가격_스기노이",
+    "travel_type": "스기노이호텔"
+   },
+   "expected": true
+  },
+  {
+   "query": "벳뿌 골프 3박4일",
+   "doc": {
+    "destination": "벳푸 스기노이 호텔",
+    "title": "스기노이 호텔 소라관 객실 요금",
+    "category": "가격_스기노이",
+    "travel_type": "스기노이호텔"
+   },
+   "expected": true
+  },
+  {
+   "query": "벳뿌 골프 3박4일",
+   "doc": {
+    "destination": "오사카·교토·고베",
+    "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+    "category": "가격_패키지",
+    "travel_type": "단독패키지"
+   },
+   "expected": false
+  },
+  {
+   "query": "벳뿌 골프 3박4일",
+   "doc": {
+    "destination": "큐슈 (벳푸·유후인·구마모토)",
+    "title": "큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+    "category": "가격_패키지",
+    "travel_type": "단독패키지"
+   },
+   "expected": true
+  },
+  {
+   "query": "벳뿌 골프 3박4일",
+   "doc": {
+    "destination": "후쿠오카·기타큐슈",
+    "title": "후쿠오카·기타큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+    "category": "가격_패키지",
+    "travel_type": "단독패키지"
+   },
+   "expected": false
+  },
+  {
+   "query": "벳뿌 골프 3박4일",
+   "doc": {
+    "destination": "삿포로",
+    "title": "삿포로 일일투어 요금",
+    "category": "가격_일일투어",
+    "travel_type": "일일투어"
+   },
+   "expected": false
+  },
+  {
+   "query": "벳뿌 골프 3박4일",
+   "doc": {
+    "destination": "오사카",
+    "title": "일일관광 투어 박물관견학 안내",
+    "category": "가격_일일투어",
+    "travel_type": "일일투어"
+   },
+   "expected": false
+  },
+  {
+   "query": "osaka 3 nights",
+   "doc": {
+    "destination": "벳푸 스기노이 호텔",
+    "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+    "category": "가격_스기노이",
+    "travel_type": "스기노이호텔"
+   },
+   "expected": false
+  },
+  {
+   "query": "osaka 3 nights",
+   "doc": {
+    "destination": "벳푸 스기노이 호텔",
+    "title": "스기노이 호텔 소라관 객실 요금",
+    "category": "가격_스기노이",
+    "travel_type": "스기노이호텔"
+   },
+   "expected": false
+  },
+  {
+   "query": "osaka 3 nights",
+   "doc": {
+    "destination": "오사카·교토·고베",
+    "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+    "category": "가격_패키지",
+    "travel_type": "단독패키지"
+   },
+   "expected": true
+  },
+  {
+   "query": "osaka 3 nights",
+   "doc": {
+    "destination": "큐슈 (벳푸·유후인·구마모토)",
+    "title": "큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+    "category": "가격_패키지",
+    "travel_type": "단독패키지"
+   },
+   "expected": false
+  },
+  {
+   "query": "osaka 3 nights",
+   "doc": {
+    "destination": "후쿠오카·기타큐슈",
+    "title": "후쿠오카·기타큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+    "category": "가격_패키지",
+    "travel_type": "단독패키지"
+   },
+   "expected": false
+  },
+  {
+   "query": "osaka 3 nights",
+   "doc": {
+    "destination": "삿포로",
+    "title": "삿포로 일일투어 요금",
+    "category": "가격_일일투어",
+    "travel_type": "일일투어"
+   },
+   "expected": false
+  },
+  {
+   "query": "osaka 3 nights",
+   "doc": {
+    "destination": "오사카",
+    "title": "일일관광 투어 박물관견학 안내",
+    "category": "가격_일일투어",
+    "travel_type": "일일투어"
+   },
+   "expected": true
+  },
+  {
+   "query": "삿뽀로 일일투어",
+   "doc": {
+    "destination": "벳푸 스기노이 호텔",
+    "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+    "category": "가격_스기노이",
+    "travel_type": "스기노이호텔"
+   },
+   "expected": false
+  },
+  {
+   "query": "삿뽀로 일일투어",
+   "doc": {
+    "destination": "벳푸 스기노이 호텔",
+    "title": "스기노이 호텔 소라관 객실 요금",
+    "category": "가격_스기노이",
+    "travel_type": "스기노이호텔"
+   },
+   "expected": false
+  },
+  {
+   "query": "삿뽀로 일일투어",
+   "doc": {
+    "destination": "오사카·교토·고베",
+    "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+    "category": "가격_패키지",
+    "travel_type": "단독패키지"
+   },
+   "expected": false
+  },
+  {
+   "query": "삿뽀로 일일투어",
+   "doc": {
+    "destination": "큐슈 (벳푸·유후인·구마모토)",
+    "title": "큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+    "category": "가격_패키지",
+    "travel_type": "단독패키지"
+   },
+   "expected": false
+  },
+  {
+   "query": "삿뽀로 일일투어",
+   "doc": {
+    "destination": "후쿠오카·기타큐슈",
+    "title": "후쿠오카·기타큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+    "category": "가격_패키지",
+    "travel_type": "단독패키지"
+   },
+   "expected": false
+  },
+  {
+   "query": "삿뽀로 일일투어",
+   "doc": {
+    "destination": "삿포로",
+    "title": "삿포로 일일투어 요금",
+    "category": "가격_일일투어",
+    "travel_type": "일일투어"
+   },
+   "expected": true
+  },
+  {
+   "query": "삿뽀로 일일투어",
+   "doc": {
+    "destination": "오사카",
+    "title": "일일관광 투어 박물관견학 안내",
+    "category": "가격_일일투어",
+    "travel_type": "일일투어"
+   },
+   "expected": false
+  },
+  {
+   "query": "카드결제 되나요?",
+   "doc": {
+    "destination": "벳푸 스기노이 호텔",
+    "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+    "category": "가격_스기노이",
+    "travel_type": "스기노이호텔"
+   },
+   "expected": false
+  },
+  {
+   "query": "카드결제 되나요?",
+   "doc": {
+    "destination": "벳푸 스기노이 호텔",
+    "title": "스기노이 호텔 소라관 객실 요금",
+    "category": "가격_스기노이",
+    "travel_type": "스기노이호텔"
+   },
+   "expected": false
+  },
+  {
+   "query": "카드결제 되나요?",
+   "doc": {
+    "destination": "오사카·교토·고베",
+    "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+    "category": "가격_패키지",
+    "travel_type": "단독패키지"
+   },
+   "expected": false
+  },
+  {
+   "query": "카드결제 되나요?",
+   "doc": {
+    "destination": "큐슈 (벳푸·유후인·구마모토)",
+    "title": "큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+    "category": "가격_패키지",
+    "travel_type": "단독패키지"
+   },
+   "expected": false
+  },
+  {
+   "query": "카드결제 되나요?",
+   "doc": {
+    "destination": "후쿠오카·기타큐슈",
+    "title": "후쿠오카·기타큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+    "category": "가격_패키지",
+    "travel_type": "단독패키지"
+   },
+   "expected": false
+  },
+  {
+   "query": "카드결제 되나요?",
+   "doc": {
+    "destination": "삿포로",
+    "title": "삿포로 일일투어 요금",
+    "category": "가격_일일투어",
+    "travel_type": "일일투어"
+   },
+   "expected": false
+  },
+  {
+   "query": "카드결제 되나요?",
+   "doc": {
+    "destination": "오사카",
+    "title": "일일관광 투어 박물관견학 안내",
+    "category": "가격_일일투어",
+    "travel_type": "일일투어"
+   },
+   "expected": false
+  },
+  {
+   "query": "일일관광 요금",
+   "doc": {
+    "destination": "벳푸 스기노이 호텔",
+    "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+    "category": "가격_스기노이",
+    "travel_type": "스기노이호텔"
+   },
+   "expected": false
+  },
+  {
+   "query": "일일관광 요금",
+   "doc": {
+    "destination": "벳푸 스기노이 호텔",
+    "title": "스기노이 호텔 소라관 객실 요금",
+    "category": "가격_스기노이",
+    "travel_type": "스기노이호텔"
+   },
+   "expected": false
+  },
+  {
+   "query": "일일관광 요금",
+   "doc": {
+    "destination": "오사카·교토·고베",
+    "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+    "category": "가격_패키지",
+    "travel_type": "단독패키지"
+   },
+   "expected": false
+  },
+  {
+   "query": "일일관광 요금",
+   "doc": {
+    "destination": "큐슈 (벳푸·유후인·구마모토)",
+    "title": "큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+    "category": "가격_패키지",
+    "travel_type": "단독패키지"
+   },
+   "expected": false
+  },
+  {
+   "query": "일일관광 요금",
+   "doc": {
+    "destination": "후쿠오카·기타큐슈",
+    "title": "후쿠오카·기타큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+    "category": "가격_패키지",
+    "travel_type": "단독패키지"
+   },
+   "expected": false
+  },
+  {
+   "query": "일일관광 요금",
+   "doc": {
+    "destination": "삿포로",
+    "title": "삿포로 일일투어 요금",
+    "category": "가격_일일투어",
+    "travel_type": "일일투어"
+   },
+   "expected": false
+  },
+  {
+   "query": "일일관광 요금",
+   "doc": {
+    "destination": "오사카",
+    "title": "일일관광 투어 박물관견학 안내",
+    "category": "가격_일일투어",
+    "travel_type": "일일투어"
+   },
+   "expected": false
+  },
+  {
+   "query": "박물관견학 가능?",
+   "doc": {
+    "destination": "벳푸 스기노이 호텔",
+    "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+    "category": "가격_스기노이",
+    "travel_type": "스기노이호텔"
+   },
+   "expected": false
+  },
+  {
+   "query": "박물관견학 가능?",
+   "doc": {
+    "destination": "벳푸 스기노이 호텔",
+    "title": "스기노이 호텔 소라관 객실 요금",
+    "category": "가격_스기노이",
+    "travel_type": "스기노이호텔"
+   },
+   "expected": false
+  },
+  {
+   "query": "박물관견학 가능?",
+   "doc": {
+    "destination": "오사카·교토·고베",
+    "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+    "category": "가격_패키지",
+    "travel_type": "단독패키지"
+   },
+   "expected": false
+  },
+  {
+   "query": "박물관견학 가능?",
+   "doc": {
+    "destination": "큐슈 (벳푸·유후인·구마모토)",
+    "title": "큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+    "category": "가격_패키지",
+    "travel_type": "단독패키지"
+   },
+   "expected": false
+  },
+  {
+   "query": "박물관견학 가능?",
+   "doc": {
+    "destination": "후쿠오카·기타큐슈",
+    "title": "후쿠오카·기타큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+    "category": "가격_패키지",
+    "travel_type": "단독패키지"
+   },
+   "expected": false
+  },
+  {
+   "query": "박물관견학 가능?",
+   "doc": {
+    "destination": "삿포로",
+    "title": "삿포로 일일투어 요금",
+    "category": "가격_일일투어",
+    "travel_type": "일일투어"
+   },
+   "expected": false
+  },
+  {
+   "query": "박물관견학 가능?",
+   "doc": {
+    "destination": "오사카",
+    "title": "일일관광 투어 박물관견학 안내",
+    "category": "가격_일일투어",
+    "travel_type": "일일투어"
+   },
+   "expected": false
+  },
+  {
+   "query": "유후인 료칸 추천",
+   "doc": {
+    "destination": "벳푸 스기노이 호텔",
+    "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+    "category": "가격_스기노이",
+    "travel_type": "스기노이호텔"
+   },
+   "expected": false
+  },
+  {
+   "query": "유후인 료칸 추천",
+   "doc": {
+    "destination": "벳푸 스기노이 호텔",
+    "title": "스기노이 호텔 소라관 객실 요금",
+    "category": "가격_스기노이",
+    "travel_type": "스기노이호텔"
+   },
+   "expected": false
+  },
+  {
+   "query": "유후인 료칸 추천",
+   "doc": {
+    "destination": "오사카·교토·고베",
+    "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+    "category": "가격_패키지",
+    "travel_type": "단독패키지"
+   },
+   "expected": false
+  },
+  {
+   "query": "유후인 료칸 추천",
+   "doc": {
+    "destination": "큐슈 (벳푸·유후인·구마모토)",
+    "title": "큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+    "category": "가격_패키지",
+    "travel_type": "단독패키지"
+   },
+   "expected": true
+  },
+  {
+   "query": "유후인 료칸 추천",
+   "doc": {
+    "destination": "후쿠오카·기타큐슈",
+    "title": "후쿠오카·기타큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+    "category": "가격_패키지",
+    "travel_type": "단독패키지"
+   },
+   "expected": false
+  },
+  {
+   "query": "유후인 료칸 추천",
+   "doc": {
+    "destination": "삿포로",
+    "title": "삿포로 일일투어 요금",
+    "category": "가격_일일투어",
+    "travel_type": "일일투어"
+   },
+   "expected": false
+  },
+  {
+   "query": "유후인 료칸 추천",
+   "doc": {
+    "destination": "오사카",
+    "title": "일일관광 투어 박물관견학 안내",
+    "category": "가격_일일투어",
+    "travel_type": "일일투어"
+   },
+   "expected": false
+  }
+ ],
+ "filter_price_context": [
+  {
+   "query": "호시관 석식 포함인가요?",
+   "used": [
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 소라관 객실 요금",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "큐슈 (벳푸·유후인·구마모토)",
+     "title": "큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "후쿠오카·기타큐슈",
+     "title": "후쿠오카·기타큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "삿포로",
+     "title": "삿포로 일일투어 요금",
+     "category": "가격_일일투어",
+     "travel_type": "일일투어"
+    },
+    {
+     "destination": "오사카",
+     "title": "일일관광 투어 박물관견학 안내",
+     "category": "가격_일일투어",
+     "travel_type": "일일투어"
+    },
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "expected_kept_titles": [
+    "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+    "패키지 취소 규정 — 공통 사항"
+   ],
+   "expected_dropped": true
+  },
+  {
+   "query": "소라관 석식 포함인가요?",
+   "used": [
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 소라관 객실 요금",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "큐슈 (벳푸·유후인·구마모토)",
+     "title": "큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "후쿠오카·기타큐슈",
+     "title": "후쿠오카·기타큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "삿포로",
+     "title": "삿포로 일일투어 요금",
+     "category": "가격_일일투어",
+     "travel_type": "일일투어"
+    },
+    {
+     "destination": "오사카",
+     "title": "일일관광 투어 박물관견학 안내",
+     "category": "가격_일일투어",
+     "travel_type": "일일투어"
+    },
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "expected_kept_titles": [
+    "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+    "스기노이 호텔 소라관 객실 요금",
+    "패키지 취소 규정 — 공통 사항"
+   ],
+   "expected_dropped": true
+  },
+  {
+   "query": "니지관 조식 있어요?",
+   "used": [
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 소라관 객실 요금",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "큐슈 (벳푸·유후인·구마모토)",
+     "title": "큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "후쿠오카·기타큐슈",
+     "title": "후쿠오카·기타큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "삿포로",
+     "title": "삿포로 일일투어 요금",
+     "category": "가격_일일투어",
+     "travel_type": "일일투어"
+    },
+    {
+     "destination": "오사카",
+     "title": "일일관광 투어 박물관견학 안내",
+     "category": "가격_일일투어",
+     "travel_type": "일일투어"
+    },
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "expected_kept_titles": [
+    "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+    "패키지 취소 규정 — 공통 사항"
+   ],
+   "expected_dropped": true
+  },
+  {
+   "query": "스기노이 소라관 요금",
+   "used": [
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 소라관 객실 요금",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "큐슈 (벳푸·유후인·구마모토)",
+     "title": "큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "후쿠오카·기타큐슈",
+     "title": "후쿠오카·기타큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "삿포로",
+     "title": "삿포로 일일투어 요금",
+     "category": "가격_일일투어",
+     "travel_type": "일일투어"
+    },
+    {
+     "destination": "오사카",
+     "title": "일일관광 투어 박물관견학 안내",
+     "category": "가격_일일투어",
+     "travel_type": "일일투어"
+    },
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "expected_kept_titles": [
+    "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+    "스기노이 호텔 소라관 객실 요금",
+    "패키지 취소 규정 — 공통 사항"
+   ],
+   "expected_dropped": true
+  },
+  {
+   "query": "오사가 3박4일 4명",
+   "used": [
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 소라관 객실 요금",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "큐슈 (벳푸·유후인·구마모토)",
+     "title": "큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "후쿠오카·기타큐슈",
+     "title": "후쿠오카·기타큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "삿포로",
+     "title": "삿포로 일일투어 요금",
+     "category": "가격_일일투어",
+     "travel_type": "일일투어"
+    },
+    {
+     "destination": "오사카",
+     "title": "일일관광 투어 박물관견학 안내",
+     "category": "가격_일일투어",
+     "travel_type": "일일투어"
+    },
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "expected_kept_titles": [
+    "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+    "일일관광 투어 박물관견학 안내",
+    "패키지 취소 규정 — 공통 사항"
+   ],
+   "expected_dropped": true
+  },
+  {
+   "query": "후쿠오까 2박3일",
+   "used": [
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 소라관 객실 요금",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "큐슈 (벳푸·유후인·구마모토)",
+     "title": "큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "후쿠오카·기타큐슈",
+     "title": "후쿠오카·기타큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "삿포로",
+     "title": "삿포로 일일투어 요금",
+     "category": "가격_일일투어",
+     "travel_type": "일일투어"
+    },
+    {
+     "destination": "오사카",
+     "title": "일일관광 투어 박물관견학 안내",
+     "category": "가격_일일투어",
+     "travel_type": "일일투어"
+    },
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "expected_kept_titles": [
+    "후쿠오카·기타큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+    "패키지 취소 규정 — 공통 사항"
+   ],
+   "expected_dropped": true
+  },
+  {
+   "query": "그럼 6명은요?",
+   "used": [
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 소라관 객실 요금",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "큐슈 (벳푸·유후인·구마모토)",
+     "title": "큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "후쿠오카·기타큐슈",
+     "title": "후쿠오카·기타큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "삿포로",
+     "title": "삿포로 일일투어 요금",
+     "category": "가격_일일투어",
+     "travel_type": "일일투어"
+    },
+    {
+     "destination": "오사카",
+     "title": "일일관광 투어 박물관견학 안내",
+     "category": "가격_일일투어",
+     "travel_type": "일일투어"
+    },
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "expected_kept_titles": [
+    "패키지 취소 규정 — 공통 사항"
+   ],
+   "expected_dropped": true
+  },
+  {
+   "query": "벳뿌 골프 3박4일",
+   "used": [
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 소라관 객실 요금",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "큐슈 (벳푸·유후인·구마모토)",
+     "title": "큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "후쿠오카·기타큐슈",
+     "title": "후쿠오카·기타큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "삿포로",
+     "title": "삿포로 일일투어 요금",
+     "category": "가격_일일투어",
+     "travel_type": "일일투어"
+    },
+    {
+     "destination": "오사카",
+     "title": "일일관광 투어 박물관견학 안내",
+     "category": "가격_일일투어",
+     "travel_type": "일일투어"
+    },
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "expected_kept_titles": [
+    "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+    "스기노이 호텔 소라관 객실 요금",
+    "큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+    "패키지 취소 규정 — 공통 사항"
+   ],
+   "expected_dropped": true
+  },
+  {
+   "query": "osaka 3 nights",
+   "used": [
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 소라관 객실 요금",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "큐슈 (벳푸·유후인·구마모토)",
+     "title": "큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "후쿠오카·기타큐슈",
+     "title": "후쿠오카·기타큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "삿포로",
+     "title": "삿포로 일일투어 요금",
+     "category": "가격_일일투어",
+     "travel_type": "일일투어"
+    },
+    {
+     "destination": "오사카",
+     "title": "일일관광 투어 박물관견학 안내",
+     "category": "가격_일일투어",
+     "travel_type": "일일투어"
+    },
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "expected_kept_titles": [
+    "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+    "일일관광 투어 박물관견학 안내",
+    "패키지 취소 규정 — 공통 사항"
+   ],
+   "expected_dropped": true
+  },
+  {
+   "query": "삿뽀로 일일투어",
+   "used": [
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 소라관 객실 요금",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "큐슈 (벳푸·유후인·구마모토)",
+     "title": "큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "후쿠오카·기타큐슈",
+     "title": "후쿠오카·기타큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "삿포로",
+     "title": "삿포로 일일투어 요금",
+     "category": "가격_일일투어",
+     "travel_type": "일일투어"
+    },
+    {
+     "destination": "오사카",
+     "title": "일일관광 투어 박물관견학 안내",
+     "category": "가격_일일투어",
+     "travel_type": "일일투어"
+    },
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "expected_kept_titles": [
+    "삿포로 일일투어 요금",
+    "패키지 취소 규정 — 공통 사항"
+   ],
+   "expected_dropped": true
+  },
+  {
+   "query": "카드결제 되나요?",
+   "used": [
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 소라관 객실 요금",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "큐슈 (벳푸·유후인·구마모토)",
+     "title": "큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "후쿠오카·기타큐슈",
+     "title": "후쿠오카·기타큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "삿포로",
+     "title": "삿포로 일일투어 요금",
+     "category": "가격_일일투어",
+     "travel_type": "일일투어"
+    },
+    {
+     "destination": "오사카",
+     "title": "일일관광 투어 박물관견학 안내",
+     "category": "가격_일일투어",
+     "travel_type": "일일투어"
+    },
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "expected_kept_titles": [
+    "패키지 취소 규정 — 공통 사항"
+   ],
+   "expected_dropped": true
+  },
+  {
+   "query": "일일관광 요금",
+   "used": [
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 소라관 객실 요금",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "큐슈 (벳푸·유후인·구마모토)",
+     "title": "큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "후쿠오카·기타큐슈",
+     "title": "후쿠오카·기타큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "삿포로",
+     "title": "삿포로 일일투어 요금",
+     "category": "가격_일일투어",
+     "travel_type": "일일투어"
+    },
+    {
+     "destination": "오사카",
+     "title": "일일관광 투어 박물관견학 안내",
+     "category": "가격_일일투어",
+     "travel_type": "일일투어"
+    },
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "expected_kept_titles": [
+    "패키지 취소 규정 — 공통 사항"
+   ],
+   "expected_dropped": true
+  },
+  {
+   "query": "박물관견학 가능?",
+   "used": [
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 소라관 객실 요금",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "큐슈 (벳푸·유후인·구마모토)",
+     "title": "큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "후쿠오카·기타큐슈",
+     "title": "후쿠오카·기타큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "삿포로",
+     "title": "삿포로 일일투어 요금",
+     "category": "가격_일일투어",
+     "travel_type": "일일투어"
+    },
+    {
+     "destination": "오사카",
+     "title": "일일관광 투어 박물관견학 안내",
+     "category": "가격_일일투어",
+     "travel_type": "일일투어"
+    },
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "expected_kept_titles": [
+    "패키지 취소 규정 — 공통 사항"
+   ],
+   "expected_dropped": true
+  },
+  {
+   "query": "유후인 료칸 추천",
+   "used": [
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 소라관 객실 요금",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "큐슈 (벳푸·유후인·구마모토)",
+     "title": "큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "후쿠오카·기타큐슈",
+     "title": "후쿠오카·기타큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "삿포로",
+     "title": "삿포로 일일투어 요금",
+     "category": "가격_일일투어",
+     "travel_type": "일일투어"
+    },
+    {
+     "destination": "오사카",
+     "title": "일일관광 투어 박물관견학 안내",
+     "category": "가격_일일투어",
+     "travel_type": "일일투어"
+    },
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "expected_kept_titles": [
+    "큐슈 2박3일 단독패키지 1인 요금 (인원별)",
+    "패키지 취소 규정 — 공통 사항"
+   ],
+   "expected_dropped": true
+  }
+ ],
+ "clean_answer": [
+  {
+   "input": "소라관은 석식이 포함됩니다 [확인필요] 사항으로 담당자가 안내드립니다.",
+   "expected": "소라관은 석식이 포함됩니다 담당자가 안내드립니다."
+  },
+  {
+   "input": "<자료 id=\"SUGI01\">요금은 1인 기준입니다</자료>",
+   "expected": "요금은 1인 기준입니다"
+  },
+  {
+   "input": "항공권은  포함되지 않습니다 .",
+   "expected": "항공권은 포함되지 않습니다."
+  },
+  {
+   "input": "[미확정] 상태이므로 정확한 금액은 담당자가 확인합니다",
+   "expected": "정확한 금액은 담당자가 확인합니다"
+  }
+ ],
+ "handoff_buttons": [
+  {
+   "handoff": {},
+   "status": "answered",
+   "failure_type": null,
+   "used": [],
+   "text": "",
+   "expected": []
+  },
+  {
+   "handoff": {},
+   "status": "answered",
+   "failure_type": null,
+   "used": [],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": []
+  },
+  {
+   "handoff": {},
+   "status": "answered",
+   "failure_type": null,
+   "used": [
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "",
+   "expected": []
+  },
+  {
+   "handoff": {},
+   "status": "answered",
+   "failure_type": null,
+   "used": [
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": []
+  },
+  {
+   "handoff": {},
+   "status": "answered",
+   "failure_type": null,
+   "used": [
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 소라관 객실 요금",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    }
+   ],
+   "text": "",
+   "expected": []
+  },
+  {
+   "handoff": {},
+   "status": "answered",
+   "failure_type": null,
+   "used": [
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 소라관 객실 요금",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": []
+  },
+  {
+   "handoff": {},
+   "status": "answered",
+   "failure_type": null,
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "",
+   "expected": []
+  },
+  {
+   "handoff": {},
+   "status": "answered",
+   "failure_type": null,
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": []
+  },
+  {
+   "handoff": {},
+   "status": "answered",
+   "failure_type": null,
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "",
+   "expected": []
+  },
+  {
+   "handoff": {},
+   "status": "answered",
+   "failure_type": null,
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": []
+  },
+  {
+   "handoff": {},
+   "status": "fallback",
+   "failure_type": "no_match",
+   "used": [],
+   "text": "",
+   "expected": []
+  },
+  {
+   "handoff": {},
+   "status": "fallback",
+   "failure_type": "no_match",
+   "used": [],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": []
+  },
+  {
+   "handoff": {},
+   "status": "fallback",
+   "failure_type": "no_match",
+   "used": [
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "",
+   "expected": []
+  },
+  {
+   "handoff": {},
+   "status": "fallback",
+   "failure_type": "no_match",
+   "used": [
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": []
+  },
+  {
+   "handoff": {},
+   "status": "fallback",
+   "failure_type": "no_match",
+   "used": [
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 소라관 객실 요금",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    }
+   ],
+   "text": "",
+   "expected": []
+  },
+  {
+   "handoff": {},
+   "status": "fallback",
+   "failure_type": "no_match",
+   "used": [
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 소라관 객실 요금",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": []
+  },
+  {
+   "handoff": {},
+   "status": "fallback",
+   "failure_type": "no_match",
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "",
+   "expected": []
+  },
+  {
+   "handoff": {},
+   "status": "fallback",
+   "failure_type": "no_match",
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": []
+  },
+  {
+   "handoff": {},
+   "status": "fallback",
+   "failure_type": "no_match",
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "",
+   "expected": []
+  },
+  {
+   "handoff": {},
+   "status": "fallback",
+   "failure_type": "no_match",
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": []
+  },
+  {
+   "handoff": {},
+   "status": "answered",
+   "failure_type": "clarify",
+   "used": [],
+   "text": "",
+   "expected": []
+  },
+  {
+   "handoff": {},
+   "status": "answered",
+   "failure_type": "clarify",
+   "used": [],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": []
+  },
+  {
+   "handoff": {},
+   "status": "answered",
+   "failure_type": "clarify",
+   "used": [
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "",
+   "expected": []
+  },
+  {
+   "handoff": {},
+   "status": "answered",
+   "failure_type": "clarify",
+   "used": [
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": []
+  },
+  {
+   "handoff": {},
+   "status": "answered",
+   "failure_type": "clarify",
+   "used": [
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 소라관 객실 요금",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    }
+   ],
+   "text": "",
+   "expected": []
+  },
+  {
+   "handoff": {},
+   "status": "answered",
+   "failure_type": "clarify",
+   "used": [
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 소라관 객실 요금",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": []
+  },
+  {
+   "handoff": {},
+   "status": "answered",
+   "failure_type": "clarify",
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "",
+   "expected": []
+  },
+  {
+   "handoff": {},
+   "status": "answered",
+   "failure_type": "clarify",
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": []
+  },
+  {
+   "handoff": {},
+   "status": "answered",
+   "failure_type": "clarify",
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "",
+   "expected": []
+  },
+  {
+   "handoff": {},
+   "status": "answered",
+   "failure_type": "clarify",
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": []
+  },
+  {
+   "handoff": {},
+   "status": "answered",
+   "failure_type": "ref_gap",
+   "used": [],
+   "text": "",
+   "expected": []
+  },
+  {
+   "handoff": {},
+   "status": "answered",
+   "failure_type": "ref_gap",
+   "used": [],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": []
+  },
+  {
+   "handoff": {},
+   "status": "answered",
+   "failure_type": "ref_gap",
+   "used": [
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "",
+   "expected": []
+  },
+  {
+   "handoff": {},
+   "status": "answered",
+   "failure_type": "ref_gap",
+   "used": [
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": []
+  },
+  {
+   "handoff": {},
+   "status": "answered",
+   "failure_type": "ref_gap",
+   "used": [
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 소라관 객실 요금",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    }
+   ],
+   "text": "",
+   "expected": []
+  },
+  {
+   "handoff": {},
+   "status": "answered",
+   "failure_type": "ref_gap",
+   "used": [
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 소라관 객실 요금",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": []
+  },
+  {
+   "handoff": {},
+   "status": "answered",
+   "failure_type": "ref_gap",
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "",
+   "expected": []
+  },
+  {
+   "handoff": {},
+   "status": "answered",
+   "failure_type": "ref_gap",
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": []
+  },
+  {
+   "handoff": {},
+   "status": "answered",
+   "failure_type": "ref_gap",
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "",
+   "expected": []
+  },
+  {
+   "handoff": {},
+   "status": "answered",
+   "failure_type": "ref_gap",
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": []
+  },
+  {
+   "handoff": {},
+   "status": "error",
+   "failure_type": "error",
+   "used": [],
+   "text": "",
+   "expected": []
+  },
+  {
+   "handoff": {},
+   "status": "error",
+   "failure_type": "error",
+   "used": [],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": []
+  },
+  {
+   "handoff": {},
+   "status": "error",
+   "failure_type": "error",
+   "used": [
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "",
+   "expected": []
+  },
+  {
+   "handoff": {},
+   "status": "error",
+   "failure_type": "error",
+   "used": [
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": []
+  },
+  {
+   "handoff": {},
+   "status": "error",
+   "failure_type": "error",
+   "used": [
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 소라관 객실 요금",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    }
+   ],
+   "text": "",
+   "expected": []
+  },
+  {
+   "handoff": {},
+   "status": "error",
+   "failure_type": "error",
+   "used": [
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 소라관 객실 요금",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": []
+  },
+  {
+   "handoff": {},
+   "status": "error",
+   "failure_type": "error",
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "",
+   "expected": []
+  },
+  {
+   "handoff": {},
+   "status": "error",
+   "failure_type": "error",
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": []
+  },
+  {
+   "handoff": {},
+   "status": "error",
+   "failure_type": "error",
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "",
+   "expected": []
+  },
+  {
+   "handoff": {},
+   "status": "error",
+   "failure_type": "error",
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": []
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": null,
+   "used": [],
+   "text": "",
+   "expected": []
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": null,
+   "used": [],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "form",
+     "label": "상담 요청서 남기기",
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": null,
+   "used": [
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "",
+   "expected": [
+    {
+     "kind": "product",
+     "label": "상품 보러가기",
+     "url": "https://example.com/osaka"
+    },
+    {
+     "kind": "form",
+     "label": "상담 요청서 남기기",
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform?usp=pp_url&entry.111=%EB%8B%A8%EB%8F%85%ED%8C%A8%ED%82%A4%EC%A7%80&entry.222=%EC%98%A4%EC%82%AC%EC%B9%B4%C2%B7%EA%B5%90%ED%86%A0%C2%B7%EA%B3%A0%EB%B2%A0"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": null,
+   "used": [
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "product",
+     "label": "상품 보러가기",
+     "url": "https://example.com/osaka"
+    },
+    {
+     "kind": "form",
+     "label": "상담 요청서 남기기",
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform?usp=pp_url&entry.111=%EB%8B%A8%EB%8F%85%ED%8C%A8%ED%82%A4%EC%A7%80&entry.222=%EC%98%A4%EC%82%AC%EC%B9%B4%C2%B7%EA%B5%90%ED%86%A0%C2%B7%EA%B3%A0%EB%B2%A0"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": null,
+   "used": [
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 소라관 객실 요금",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    }
+   ],
+   "text": "",
+   "expected": [
+    {
+     "kind": "product",
+     "label": "상품 보러가기",
+     "url": "https://example.com/suginoi"
+    },
+    {
+     "kind": "form",
+     "label": "상담 요청서 남기기",
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform?usp=pp_url&entry.111=%EC%8A%A4%EA%B8%B0%EB%85%B8%EC%9D%B4%ED%98%B8%ED%85%94&entry.222=%ED%81%90%EC%8A%88%20%28%EB%B2%B3%ED%91%B8%C2%B7%EC%9C%A0%ED%9B%84%EC%9D%B8%C2%B7%EA%B5%AC%EB%A7%88%EB%AA%A8%ED%86%A0%29"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": null,
+   "used": [
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 소라관 객실 요금",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "product",
+     "label": "상품 보러가기",
+     "url": "https://example.com/suginoi"
+    },
+    {
+     "kind": "form",
+     "label": "상담 요청서 남기기",
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform?usp=pp_url&entry.111=%EC%8A%A4%EA%B8%B0%EB%85%B8%EC%9D%B4%ED%98%B8%ED%85%94&entry.222=%ED%81%90%EC%8A%88%20%28%EB%B2%B3%ED%91%B8%C2%B7%EC%9C%A0%ED%9B%84%EC%9D%B8%C2%B7%EA%B5%AC%EB%A7%88%EB%AA%A8%ED%86%A0%29"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": null,
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "",
+   "expected": []
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": null,
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "form",
+     "label": "상담 요청서 남기기",
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": null,
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "",
+   "expected": []
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": null,
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "form",
+     "label": "상담 요청서 남기기",
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform?usp=pp_url&entry.111=%EB%8B%A8%EB%8F%85%ED%8C%A8%ED%82%A4%EC%A7%80&entry.222=%EC%98%A4%EC%82%AC%EC%B9%B4%C2%B7%EA%B5%90%ED%86%A0%C2%B7%EA%B3%A0%EB%B2%A0"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "fallback",
+   "failure_type": "no_match",
+   "used": [],
+   "text": "",
+   "expected": [
+    {
+     "kind": "form",
+     "label": "상담 요청서 남기기",
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "fallback",
+   "failure_type": "no_match",
+   "used": [],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "form",
+     "label": "상담 요청서 남기기",
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "fallback",
+   "failure_type": "no_match",
+   "used": [
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "",
+   "expected": [
+    {
+     "kind": "form",
+     "label": "상담 요청서 남기기",
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "fallback",
+   "failure_type": "no_match",
+   "used": [
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "form",
+     "label": "상담 요청서 남기기",
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "fallback",
+   "failure_type": "no_match",
+   "used": [
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 소라관 객실 요금",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    }
+   ],
+   "text": "",
+   "expected": [
+    {
+     "kind": "form",
+     "label": "상담 요청서 남기기",
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "fallback",
+   "failure_type": "no_match",
+   "used": [
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 소라관 객실 요금",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "form",
+     "label": "상담 요청서 남기기",
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "fallback",
+   "failure_type": "no_match",
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "",
+   "expected": [
+    {
+     "kind": "form",
+     "label": "상담 요청서 남기기",
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "fallback",
+   "failure_type": "no_match",
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "form",
+     "label": "상담 요청서 남기기",
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "fallback",
+   "failure_type": "no_match",
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "",
+   "expected": [
+    {
+     "kind": "form",
+     "label": "상담 요청서 남기기",
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "fallback",
+   "failure_type": "no_match",
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "form",
+     "label": "상담 요청서 남기기",
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": "clarify",
+   "used": [],
+   "text": "",
+   "expected": [
+    {
+     "kind": "form",
+     "label": "상담 요청서 남기기",
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": "clarify",
+   "used": [],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "form",
+     "label": "상담 요청서 남기기",
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": "clarify",
+   "used": [
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "",
+   "expected": [
+    {
+     "kind": "product",
+     "label": "상품 보러가기",
+     "url": "https://example.com/osaka"
+    },
+    {
+     "kind": "form",
+     "label": "상담 요청서 남기기",
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform?usp=pp_url&entry.111=%EB%8B%A8%EB%8F%85%ED%8C%A8%ED%82%A4%EC%A7%80&entry.222=%EC%98%A4%EC%82%AC%EC%B9%B4%C2%B7%EA%B5%90%ED%86%A0%C2%B7%EA%B3%A0%EB%B2%A0"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": "clarify",
+   "used": [
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "product",
+     "label": "상품 보러가기",
+     "url": "https://example.com/osaka"
+    },
+    {
+     "kind": "form",
+     "label": "상담 요청서 남기기",
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform?usp=pp_url&entry.111=%EB%8B%A8%EB%8F%85%ED%8C%A8%ED%82%A4%EC%A7%80&entry.222=%EC%98%A4%EC%82%AC%EC%B9%B4%C2%B7%EA%B5%90%ED%86%A0%C2%B7%EA%B3%A0%EB%B2%A0"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": "clarify",
+   "used": [
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 소라관 객실 요금",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    }
+   ],
+   "text": "",
+   "expected": [
+    {
+     "kind": "product",
+     "label": "상품 보러가기",
+     "url": "https://example.com/suginoi"
+    },
+    {
+     "kind": "form",
+     "label": "상담 요청서 남기기",
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform?usp=pp_url&entry.111=%EC%8A%A4%EA%B8%B0%EB%85%B8%EC%9D%B4%ED%98%B8%ED%85%94&entry.222=%ED%81%90%EC%8A%88%20%28%EB%B2%B3%ED%91%B8%C2%B7%EC%9C%A0%ED%9B%84%EC%9D%B8%C2%B7%EA%B5%AC%EB%A7%88%EB%AA%A8%ED%86%A0%29"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": "clarify",
+   "used": [
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 소라관 객실 요금",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "product",
+     "label": "상품 보러가기",
+     "url": "https://example.com/suginoi"
+    },
+    {
+     "kind": "form",
+     "label": "상담 요청서 남기기",
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform?usp=pp_url&entry.111=%EC%8A%A4%EA%B8%B0%EB%85%B8%EC%9D%B4%ED%98%B8%ED%85%94&entry.222=%ED%81%90%EC%8A%88%20%28%EB%B2%B3%ED%91%B8%C2%B7%EC%9C%A0%ED%9B%84%EC%9D%B8%C2%B7%EA%B5%AC%EB%A7%88%EB%AA%A8%ED%86%A0%29"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": "clarify",
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "",
+   "expected": [
+    {
+     "kind": "form",
+     "label": "상담 요청서 남기기",
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": "clarify",
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "form",
+     "label": "상담 요청서 남기기",
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": "clarify",
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "",
+   "expected": [
+    {
+     "kind": "form",
+     "label": "상담 요청서 남기기",
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform?usp=pp_url&entry.111=%EB%8B%A8%EB%8F%85%ED%8C%A8%ED%82%A4%EC%A7%80&entry.222=%EC%98%A4%EC%82%AC%EC%B9%B4%C2%B7%EA%B5%90%ED%86%A0%C2%B7%EA%B3%A0%EB%B2%A0"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": "clarify",
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "form",
+     "label": "상담 요청서 남기기",
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform?usp=pp_url&entry.111=%EB%8B%A8%EB%8F%85%ED%8C%A8%ED%82%A4%EC%A7%80&entry.222=%EC%98%A4%EC%82%AC%EC%B9%B4%C2%B7%EA%B5%90%ED%86%A0%C2%B7%EA%B3%A0%EB%B2%A0"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": "ref_gap",
+   "used": [],
+   "text": "",
+   "expected": [
+    {
+     "kind": "form",
+     "label": "상담 요청서 남기기",
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": "ref_gap",
+   "used": [],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "form",
+     "label": "상담 요청서 남기기",
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": "ref_gap",
+   "used": [
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "",
+   "expected": [
+    {
+     "kind": "product",
+     "label": "상품 보러가기",
+     "url": "https://example.com/osaka"
+    },
+    {
+     "kind": "form",
+     "label": "상담 요청서 남기기",
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform?usp=pp_url&entry.111=%EB%8B%A8%EB%8F%85%ED%8C%A8%ED%82%A4%EC%A7%80&entry.222=%EC%98%A4%EC%82%AC%EC%B9%B4%C2%B7%EA%B5%90%ED%86%A0%C2%B7%EA%B3%A0%EB%B2%A0"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": "ref_gap",
+   "used": [
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "product",
+     "label": "상품 보러가기",
+     "url": "https://example.com/osaka"
+    },
+    {
+     "kind": "form",
+     "label": "상담 요청서 남기기",
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform?usp=pp_url&entry.111=%EB%8B%A8%EB%8F%85%ED%8C%A8%ED%82%A4%EC%A7%80&entry.222=%EC%98%A4%EC%82%AC%EC%B9%B4%C2%B7%EA%B5%90%ED%86%A0%C2%B7%EA%B3%A0%EB%B2%A0"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": "ref_gap",
+   "used": [
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 소라관 객실 요금",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    }
+   ],
+   "text": "",
+   "expected": [
+    {
+     "kind": "product",
+     "label": "상품 보러가기",
+     "url": "https://example.com/suginoi"
+    },
+    {
+     "kind": "form",
+     "label": "상담 요청서 남기기",
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform?usp=pp_url&entry.111=%EC%8A%A4%EA%B8%B0%EB%85%B8%EC%9D%B4%ED%98%B8%ED%85%94&entry.222=%ED%81%90%EC%8A%88%20%28%EB%B2%B3%ED%91%B8%C2%B7%EC%9C%A0%ED%9B%84%EC%9D%B8%C2%B7%EA%B5%AC%EB%A7%88%EB%AA%A8%ED%86%A0%29"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": "ref_gap",
+   "used": [
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 소라관 객실 요금",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "product",
+     "label": "상품 보러가기",
+     "url": "https://example.com/suginoi"
+    },
+    {
+     "kind": "form",
+     "label": "상담 요청서 남기기",
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform?usp=pp_url&entry.111=%EC%8A%A4%EA%B8%B0%EB%85%B8%EC%9D%B4%ED%98%B8%ED%85%94&entry.222=%ED%81%90%EC%8A%88%20%28%EB%B2%B3%ED%91%B8%C2%B7%EC%9C%A0%ED%9B%84%EC%9D%B8%C2%B7%EA%B5%AC%EB%A7%88%EB%AA%A8%ED%86%A0%29"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": "ref_gap",
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "",
+   "expected": [
+    {
+     "kind": "form",
+     "label": "상담 요청서 남기기",
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": "ref_gap",
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "form",
+     "label": "상담 요청서 남기기",
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": "ref_gap",
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "",
+   "expected": [
+    {
+     "kind": "form",
+     "label": "상담 요청서 남기기",
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform?usp=pp_url&entry.111=%EB%8B%A8%EB%8F%85%ED%8C%A8%ED%82%A4%EC%A7%80&entry.222=%EC%98%A4%EC%82%AC%EC%B9%B4%C2%B7%EA%B5%90%ED%86%A0%C2%B7%EA%B3%A0%EB%B2%A0"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": "ref_gap",
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "form",
+     "label": "상담 요청서 남기기",
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform?usp=pp_url&entry.111=%EB%8B%A8%EB%8F%85%ED%8C%A8%ED%82%A4%EC%A7%80&entry.222=%EC%98%A4%EC%82%AC%EC%B9%B4%C2%B7%EA%B5%90%ED%86%A0%C2%B7%EA%B3%A0%EB%B2%A0"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "error",
+   "failure_type": "error",
+   "used": [],
+   "text": "",
+   "expected": [
+    {
+     "kind": "form",
+     "label": "상담 요청서 남기기",
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "error",
+   "failure_type": "error",
+   "used": [],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "form",
+     "label": "상담 요청서 남기기",
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "error",
+   "failure_type": "error",
+   "used": [
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "",
+   "expected": [
+    {
+     "kind": "form",
+     "label": "상담 요청서 남기기",
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "error",
+   "failure_type": "error",
+   "used": [
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "form",
+     "label": "상담 요청서 남기기",
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "error",
+   "failure_type": "error",
+   "used": [
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 소라관 객실 요금",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    }
+   ],
+   "text": "",
+   "expected": [
+    {
+     "kind": "form",
+     "label": "상담 요청서 남기기",
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "error",
+   "failure_type": "error",
+   "used": [
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 소라관 객실 요금",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "form",
+     "label": "상담 요청서 남기기",
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "error",
+   "failure_type": "error",
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "",
+   "expected": [
+    {
+     "kind": "form",
+     "label": "상담 요청서 남기기",
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "error",
+   "failure_type": "error",
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "form",
+     "label": "상담 요청서 남기기",
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "error",
+   "failure_type": "error",
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "",
+   "expected": [
+    {
+     "kind": "form",
+     "label": "상담 요청서 남기기",
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": true,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "error",
+   "failure_type": "error",
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "form",
+     "label": "상담 요청서 남기기",
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": null,
+   "used": [],
+   "text": "",
+   "expected": []
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": null,
+   "used": [],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": null,
+   "used": [
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "",
+   "expected": [
+    {
+     "kind": "product",
+     "label": "상품 보러가기",
+     "url": "https://example.com/osaka"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": null,
+   "used": [
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "product",
+     "label": "상품 보러가기",
+     "url": "https://example.com/osaka"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": null,
+   "used": [
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 소라관 객실 요금",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    }
+   ],
+   "text": "",
+   "expected": [
+    {
+     "kind": "product",
+     "label": "상품 보러가기",
+     "url": "https://example.com/suginoi"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": null,
+   "used": [
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 소라관 객실 요금",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "product",
+     "label": "상품 보러가기",
+     "url": "https://example.com/suginoi"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": null,
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "",
+   "expected": []
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": null,
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": null,
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "",
+   "expected": []
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": null,
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "fallback",
+   "failure_type": "no_match",
+   "used": [],
+   "text": "",
+   "expected": [
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "fallback",
+   "failure_type": "no_match",
+   "used": [],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "fallback",
+   "failure_type": "no_match",
+   "used": [
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "",
+   "expected": [
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "fallback",
+   "failure_type": "no_match",
+   "used": [
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "fallback",
+   "failure_type": "no_match",
+   "used": [
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 소라관 객실 요금",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    }
+   ],
+   "text": "",
+   "expected": [
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "fallback",
+   "failure_type": "no_match",
+   "used": [
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 소라관 객실 요금",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "fallback",
+   "failure_type": "no_match",
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "",
+   "expected": [
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "fallback",
+   "failure_type": "no_match",
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "fallback",
+   "failure_type": "no_match",
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "",
+   "expected": [
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "fallback",
+   "failure_type": "no_match",
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": "clarify",
+   "used": [],
+   "text": "",
+   "expected": [
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": "clarify",
+   "used": [],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": "clarify",
+   "used": [
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "",
+   "expected": [
+    {
+     "kind": "product",
+     "label": "상품 보러가기",
+     "url": "https://example.com/osaka"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": "clarify",
+   "used": [
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "product",
+     "label": "상품 보러가기",
+     "url": "https://example.com/osaka"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": "clarify",
+   "used": [
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 소라관 객실 요금",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    }
+   ],
+   "text": "",
+   "expected": [
+    {
+     "kind": "product",
+     "label": "상품 보러가기",
+     "url": "https://example.com/suginoi"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": "clarify",
+   "used": [
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 소라관 객실 요금",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "product",
+     "label": "상품 보러가기",
+     "url": "https://example.com/suginoi"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": "clarify",
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "",
+   "expected": [
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": "clarify",
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": "clarify",
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "",
+   "expected": [
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": "clarify",
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": "ref_gap",
+   "used": [],
+   "text": "",
+   "expected": [
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": "ref_gap",
+   "used": [],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": "ref_gap",
+   "used": [
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "",
+   "expected": [
+    {
+     "kind": "product",
+     "label": "상품 보러가기",
+     "url": "https://example.com/osaka"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": "ref_gap",
+   "used": [
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "product",
+     "label": "상품 보러가기",
+     "url": "https://example.com/osaka"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": "ref_gap",
+   "used": [
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 소라관 객실 요금",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    }
+   ],
+   "text": "",
+   "expected": [
+    {
+     "kind": "product",
+     "label": "상품 보러가기",
+     "url": "https://example.com/suginoi"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": "ref_gap",
+   "used": [
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 소라관 객실 요금",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "product",
+     "label": "상품 보러가기",
+     "url": "https://example.com/suginoi"
+    },
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": "ref_gap",
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "",
+   "expected": [
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": "ref_gap",
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": "ref_gap",
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "",
+   "expected": [
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "answered",
+   "failure_type": "ref_gap",
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "error",
+   "failure_type": "error",
+   "used": [],
+   "text": "",
+   "expected": [
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "error",
+   "failure_type": "error",
+   "used": [],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "error",
+   "failure_type": "error",
+   "used": [
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "",
+   "expected": [
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "error",
+   "failure_type": "error",
+   "used": [
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "error",
+   "failure_type": "error",
+   "used": [
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 소라관 객실 요금",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    }
+   ],
+   "text": "",
+   "expected": [
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "error",
+   "failure_type": "error",
+   "used": [
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 소라관 객실 요금",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    },
+    {
+     "destination": "벳푸 스기노이 호텔",
+     "title": "스기노이 호텔 관별 차이 — 석식 포함 여부와 객실 (소라관·호시관·니지관)",
+     "category": "가격_스기노이",
+     "travel_type": "스기노이호텔"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "error",
+   "failure_type": "error",
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "",
+   "expected": [
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "error",
+   "failure_type": "error",
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "error",
+   "failure_type": "error",
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "",
+   "expected": [
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  },
+  {
+   "handoff": {
+    "form": {
+     "ready": false,
+     "url": "https://docs.google.com/forms/d/e/TEST/viewform",
+     "entry_travel_type": "111",
+     "entry_region": "222",
+     "prefill": {
+      "기본": [
+       "",
+       ""
+      ],
+      "단독패키지/오사카·교토·고베": [
+       "단독패키지",
+       "오사카·교토·고베"
+      ],
+      "스기노이호텔": [
+       "스기노이호텔",
+       "큐슈 (벳푸·유후인·구마모토)"
+      ]
+     }
+    },
+    "kakao_chat_url": "https://pf.kakao.com/_test/chat",
+    "product_links": {
+     "단독패키지/오사카·교토·고베": "https://example.com/osaka",
+     "스기노이호텔": "https://example.com/suginoi"
+    }
+   },
+   "status": "error",
+   "failure_type": "error",
+   "used": [
+    {
+     "destination": "",
+     "title": "패키지 취소 규정 — 공통 사항",
+     "category": "취소규정",
+     "travel_type": "단독패키지"
+    },
+    {
+     "destination": "오사카·교토·고베",
+     "title": "오사카·교토·고베 3박4일 단독패키지 1인 요금 (인원별)",
+     "category": "가격_패키지",
+     "travel_type": "단독패키지"
+    }
+   ],
+   "text": "자세한 일정은 담당자가 안내드립니다.",
+   "expected": [
+    {
+     "kind": "kakao",
+     "label": "카카오톡으로 상담하기",
+     "url": "https://pf.kakao.com/_test/chat"
+    }
+   ]
+  }
+ ]
+}
