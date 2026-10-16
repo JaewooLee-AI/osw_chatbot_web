@@ -77,6 +77,8 @@ export function cleanAnswer(text: string): string {
 }
 
 const HISTORY_TURNS = 3;
+// 이어 묻기 풀어쓰기는 실패해도 원문으로 계속하므로, 이 단계에는 시간을 조금만 준다.
+const REWRITE_BUDGET_MS = 7000;
 
 /**
  * 이전 대화에 기대는 질문("그럼 6명은요?")을 독립된 검색 질문으로 풀어쓴다.
@@ -84,7 +86,8 @@ const HISTORY_TURNS = 3;
 export async function rewriteQuery(
   question: string,
   history: ChatTurn[],
-  settings: BotSettings
+  settings: BotSettings,
+  deadline?: number
 ): Promise<string> {
   const recent = (history || []).slice(-HISTORY_TURNS * 2);
   const lines: string[] = [];
@@ -126,7 +129,7 @@ ${question}`;
       getProviderModel(provider),
       getApiKey(provider),
     ]);
-    const out = await generateAnswer(provider, model, key, system, prompt);
+    const out = await generateAnswer(provider, model, key, system, prompt, deadline);
     const firstLine = out
       .trim()
       .split(/\r?\n/)[0]
@@ -338,10 +341,11 @@ export async function searchDocuments(
   brand: string,
   question: string,
   travelTypes?: string[] | null,
-  matchCount: number = 10
+  matchCount: number = 10,
+  deadline?: number
 ): Promise<MatchedDocument[]> {
   const geminiKey = await getApiKey("gemini");
-  const vec = await embedQuery(question, geminiKey);
+  const vec = await embedQuery(question, geminiKey, deadline);
   const hits = await matchDocuments(brand, vec, question, matchCount, travelTypes);
   const vectorHits = hits
     .filter((h) => h.match_source === "vector")
@@ -357,6 +361,8 @@ export async function answerQuestion(params: {
   travelTypes?: string[] | null;
   history?: ChatTurn[];
   log?: boolean;
+  /** 이 시각(Date.now() 기준 ms)까지 답을 끝낸다. 넘기면 상담 연결 안내로 끝낸다. */
+  deadline?: number;
 }): Promise<RagAnswer> {
   const brand = params.brand;
   const question = (params.question || "").normalize("NFC").trim();
@@ -369,12 +375,17 @@ export async function answerQuestion(params: {
 
   const searchQ =
     history.length > 0
-      ? await rewriteQuery(question, history, settings)
+      ? await rewriteQuery(
+          question,
+          history,
+          settings,
+          Math.min(params.deadline ?? Infinity, Date.now() + REWRITE_BUDGET_MS)
+        )
       : question;
 
   let hits: MatchedDocument[] = [];
   try {
-    hits = await searchDocuments(brand, searchQ, params.travelTypes);
+    hits = await searchDocuments(brand, searchQ, params.travelTypes, 10, params.deadline);
   } catch (err: any) {
     return {
       text: `잠시 검색 중 오류가 발생했습니다. 아래 상담 버튼으로 문의해 주시면 빠르게 안내드리겠습니다.`,
@@ -413,7 +424,7 @@ export async function answerQuestion(params: {
     if (log) {
       await logFallback({
         brand,
-        channel: "simulator",
+        channel: "web",
         user_query: logQuery,
         bot_answer: logPrefix + (raw || text),
         top_similarity: Number(top.toFixed(4)),
@@ -486,7 +497,7 @@ export async function answerQuestion(params: {
       getProviderModel(provider),
       getApiKey(provider),
     ]);
-    raw = await generateAnswer(provider, model, key, system, prompt);
+    raw = await generateAnswer(provider, model, key, system, prompt, params.deadline);
   } catch (err: any) {
     return makeFallback("error", fallbackText, used, String(err));
   }
@@ -503,7 +514,7 @@ export async function answerQuestion(params: {
     if (log) {
       await logFallback({
         brand,
-        channel: "simulator",
+        channel: "web",
         user_query: logQuery,
         bot_answer: logPrefix + text,
         top_similarity: Number(top.toFixed(4)),
