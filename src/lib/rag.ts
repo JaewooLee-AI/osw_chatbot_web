@@ -13,9 +13,10 @@ import {
 
 const VERIFY_PENDING = "확인필요";
 
+// 관리자 앱(osw_chatbot_admin/osw_admin/rag.py TONES)과 글자 하나까지 같아야 한다.
+// 말투는 관리자 [챗봇 설정]에서 이 목록 중 하나로만 저장된다.
 const TONES: Record<string, string> = {
-  "친절한 상담원": "친절하고 정중한 상담원 말투(~습니다, ~드릴게요)로 답하세요.",
-  "차분한 전문가": "차분하고 신뢰감 있는 여행 전문가 말투로 핵심부터 답하세요.",
+  "친절한 상담원": "친절하고 공손한 여행 상담원 말투로, 짧은 문단과 줄바꿈을 써서 답하세요.",
   "간결한 안내": "핵심만 간결하게, 필요한 경우 목록으로 답하세요.",
   "따뜻한 가족여행 상담":
     "가족여행을 준비하는 고객에게 공감하는 따뜻한 말투로 답하되, 사실은 정확히 전달하세요.",
@@ -228,13 +229,18 @@ function withinOneEdit(a: string, b: string): boolean {
   return prev[b.length] <= 1;
 }
 
-function placeTokens(doc: MatchedDocument): string[] {
+// 항목의 '○○관'(소라관·호시관·니지관)을 낱말 단위로 뽑는다. 앞뒤가 글자가 아니어야 하므로
+// "(소라관"·"·호시관"처럼 문장부호가 붙거나 "일일관광"·"박물관견학"의 일부를 잡지 않는다.
+// JS의 \W는 한글을 '글자 아님'으로 보므로 쓰지 않는다. (rag.py PLACE_SUFFIX와 같은 규칙)
+const PLACE_SUFFIX = /(?<![가-힣A-Za-z0-9])([가-힣A-Za-z0-9]{1,3}관)(?![가-힣A-Za-z0-9])/g;
+
+export function placeTokens(doc: Pick<MatchedDocument, "destination" | "title">): string[] {
   const words = (doc.destination || "")
     .split(/[\s·,()/]+/)
     .filter((w) => w.length >= 2 && w !== "호텔");
-  const titleMatches = Array.from(
-    (doc.title || "").matchAll(/(\S{1,3}관)(?=\s|$|\W)/g)
-  ).map((m) => m[1]);
+  const titleMatches = Array.from((doc.title || "").matchAll(PLACE_SUFFIX)).map(
+    (m) => m[1]
+  );
   return [...words, ...titleMatches];
 }
 
