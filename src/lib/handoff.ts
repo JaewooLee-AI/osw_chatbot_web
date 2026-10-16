@@ -13,6 +13,9 @@ export interface HandoffButton {
   url: string;
 }
 
+export const DEFAULT_FORM_URL =
+  "https://docs.google.com/forms/d/e/1FAIpQLSdY4J8dEgdM0MII9pRBVEb0GXUZKbC8x3pCYcwASBE-ZUQwtw/viewform";
+
 export function docKey(doc: MatchedDocument): string | null {
   const t = doc.travel_type || "";
   const d = doc.destination || "";
@@ -30,10 +33,11 @@ export function formUrl(
   key: string | null
 ): string {
   const form = handoff?.form;
-  if (!form || !form.ready || !form.url) {
+  const baseUrl = form?.url || DEFAULT_FORM_URL;
+  if (!baseUrl) {
     return "";
   }
-  const prefillMap = form.prefill || {};
+  const prefillMap = form?.prefill || {};
   const pair =
     (key ? prefillMap[key] : undefined) ||
     prefillMap["기본"] || [
@@ -43,8 +47,8 @@ export function formUrl(
   const [ftype, fregion] = pair;
 
   const params: Array<[string | undefined, string]> = [
-    [form.entry_travel_type, ftype],
-    [form.entry_region, fregion],
+    [form?.entry_travel_type, ftype],
+    [form?.entry_region, fregion],
   ];
 
   const query = params
@@ -52,7 +56,7 @@ export function formUrl(
     .map(([id, val]) => `&entry.${id}=${encodeURIComponent(val)}`)
     .join("");
 
-  return form.url + (query ? `?usp=pp_url${query}` : "");
+  return baseUrl + (query ? `?usp=pp_url${query}` : "");
 }
 
 /**
