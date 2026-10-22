@@ -153,6 +153,9 @@ export async function generateAnswer(
   if (provider === "claude") {
     return generateClaude(model, key, system, prompt, deadline);
   }
+  if (provider === "openai") {
+    return generateOpenAI(model, key, system, prompt, deadline);
+  }
 
   const data = await geminiPost(
     `models/${model}:generateContent`,
@@ -196,16 +199,21 @@ async function generateClaude(
   try {
     const resp = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
+      // 관리자 앱(ai.py _claude)과 같은 설정: 추론 강도 low(짧은 상담 답변이라 속도 우선),
+      // 안전 분류기가 거절하면 서버가 대체 모델로 자동 재시도(fallbacks: "default").
       headers: {
         "x-api-key": key,
         "anthropic-version": "2023-06-01",
+        "anthropic-beta": "server-side-fallback-2026-07-01",
         "content-type": "application/json",
       },
       body: JSON.stringify({
         model,
-        max_tokens: 2048,
+        max_tokens: 4000,
         system,
         messages: [{ role: "user", content: prompt }],
+        output_config: { effort: "low" },
+        fallbacks: "default",
       }),
       signal: controller.signal,
     });
@@ -216,6 +224,9 @@ async function generateClaude(
       throw new AIError(`Claude 호출 실패 (HTTP ${resp.status}): ${errText.slice(0, 200)}`);
     }
     const data = await resp.json();
+    if (data?.stop_reason === "refusal") {
+      throw new AIError("Claude가 이 질문에 대한 답변을 거절했습니다.");
+    }
     const text = (data?.content || [])
       .filter((b: any) => b?.type === "text")
       .map((b: any) => b?.text || "")
@@ -231,4 +242,77 @@ async function generateClaude(
     if (err instanceof AIError) throw err;
     throw new AIError(`Claude 연결 오류: ${err?.message || String(err)}`);
   }
+}
+
+/**
+ * OpenAI Responses API (관리자 앱 ai.py _openai와 같은 규칙).
+ * store=false: 고객 질문을 OpenAI 쪽에 대화 기록으로 저장하지 않는다.
+ * reasoning.effort=low: 짧은 상담 답변이라 속도 우선. 추론 설정을 받지 않는 모델이면 빼고 한 번 더 보낸다.
+ */
+export function extractOpenAIText(data: any): string {
+  return (data?.output || [])
+    .filter((item: any) => item?.type === "message")
+    .flatMap((item: any) => item?.content || [])
+    .filter((c: any) => c?.type === "output_text")
+    .map((c: any) => c?.text || "")
+    .join("")
+    .trim();
+}
+
+async function generateOpenAI(
+  model: string,
+  key: string,
+  system: string,
+  prompt: string,
+  deadline?: number
+): Promise<string> {
+  const payload: Record<string, unknown> = {
+    model,
+    instructions: system,
+    input: prompt,
+    max_output_tokens: 4000,
+    store: false,
+    reasoning: { effort: "low" },
+  };
+  let lastError = "";
+  for (let attempt = 0; attempt < 3; attempt++) {
+    const budget = attemptBudget(25000, deadline);
+    if (budget === 0) {
+      lastError = lastError || "응답 시간 초과";
+      break;
+    }
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), budget);
+    try {
+      const resp = await fetch("https://api.openai.com/v1/responses", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+        signal: controller.signal,
+      });
+      clearTimeout(timer);
+      if (resp.ok) {
+        const data = await resp.json();
+        const text = extractOpenAIText(data);
+        if (!text) {
+          const why = data?.incomplete_details?.reason || data?.status || "";
+          throw new AIError(`OpenAI가 빈 답변을 돌려줬습니다 (${why}).`);
+        }
+        return text;
+      }
+      const errText = await resp.text();
+      if (resp.status === 400 && "reasoning" in payload && errText.toLowerCase().includes("reasoning")) {
+        delete payload.reasoning; // 추론 설정을 받지 않는 모델 (예: gpt-4.1 계열)
+        continue;
+      }
+      lastError = `HTTP ${resp.status}: ${errText.slice(0, 200)}`;
+      if (!RETRYABLE_STATUS.has(resp.status)) break;
+    } catch (err: any) {
+      clearTimeout(timer);
+      if (err instanceof AIError) throw err;
+      lastError = err?.message || String(err);
+    }
+    await sleep(800 * (attempt + 1));
+  }
+  throw new AIError(`OpenAI 호출 실패 — ${lastError}`);
 }

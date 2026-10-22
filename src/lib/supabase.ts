@@ -12,6 +12,7 @@ export const IMAGE_BUCKET = "chatbot-images";
 const DEFAULT_MODELS: Record<string, string> = {
   gemini: "gemini-3.5-flash-lite",
   claude: "claude-opus-5-5",
+  openai: "gpt-6.1-sol",
 };
 
 let _client: SupabaseClient | null = null;
@@ -184,6 +185,9 @@ async function loadApiKey(vendor: string): Promise<string> {
   }
   if (vendor === "claude") {
     return (process.env.ANTHROPIC_API_KEY || "").trim();
+  }
+  if (vendor === "openai") {
+    return (process.env.OPENAI_API_KEY || "").trim();
   }
   return "";
 }
