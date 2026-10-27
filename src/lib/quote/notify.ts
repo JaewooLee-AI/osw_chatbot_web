@@ -5,7 +5,7 @@ import { formatApproxKrw } from "./format";
 /**
  * 연락처가 남겨진 견적을 담당자 메일로 알린다. 발송 실패는 견적 접수에 영향을 주지 않는다(기록만 남김).
  * 구글(Gmail) SMTP 로 보낸다. 받는 주소는 Supabase quote_settings.notify_email 에서 읽는다.
- *   GMAIL_USER          보내는 구글 계정 (예: japanstoryop@gmail.com)
+ *   GMAIL_USER          보내는 구글 계정 (회사 공용 메일 계정)
  *   GMAIL_APP_PASSWORD  그 계정의 '앱 비밀번호' 16자리 (2단계 인증을 켠 뒤 구글 계정에서 만든다 — 로그인 비밀번호가 아니다)
  *   QUOTE_MAIL_FROM     (선택) 보내는 이름 표시. 없으면 GMAIL_USER
  */
