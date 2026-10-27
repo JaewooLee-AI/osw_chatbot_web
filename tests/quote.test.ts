@@ -152,3 +152,11 @@ describe("홋카이도", () => {
     expect(calculateQuote(FAKE, hk({ departDate: "2026-12-04", adults: 15 })).status).toBe("handoff");
   });
 });
+
+describe("관리자 앱(파이썬)과 공통 케이스", () => {
+  const shared = require("./quote_cases.json") as { ruleset: typeof FAKE; cases: { input: QuoteInput; expected: unknown }[] };
+  it("quote_cases.json 의 기대값과 같다", () => {
+    expect(shared.ruleset).toEqual(JSON.parse(JSON.stringify(FAKE)));
+    for (const c of shared.cases) expect(JSON.parse(JSON.stringify(calculateQuote(shared.ruleset, c.input)))).toEqual(c.expected);
+  });
+});
