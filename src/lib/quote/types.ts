@@ -54,6 +54,8 @@ export interface CourseBase {
   maxPax: number;
   /** 참고 견적(담당자 확인 필요) 표시 여부 — 2박3일·4박5일 */
   reference?: boolean;
+  /** 코스 소개 지식에 일정 앞에 붙는 소개 문구 (선택, 계산에는 쓰이지 않음) */
+  intro?: string;
 }
 
 /** 시즈오카형: 호텔이 코스별로 고정, 공동경비는 인아웃·차종별 */
