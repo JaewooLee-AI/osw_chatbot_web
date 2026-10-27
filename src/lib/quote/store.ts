@@ -77,6 +77,7 @@ export function getActiveRuleset(brand: string): Promise<ActiveRuleset | null> {
 /** 방문자 화면에 내려보내는 코스 목록 — 원가·요금표는 넣지 않는다. */
 export interface PublicCourse {
   id: string;
+  region: string;
   name: string;
   nights: number;
   minPax: number;
@@ -89,6 +90,7 @@ export interface PublicCourse {
 export function publicCourses(rs: Ruleset): PublicCourse[] {
   return rs.courses.map((c: Course) => ({
     id: c.id,
+    region: c.region,
     name: c.name,
     nights: c.nights,
     minPax: c.minPax,

@@ -4,9 +4,11 @@ import React, { useEffect, useState } from "react";
 import { Calculator, Minus, Plus, X, CheckCircle2, MessageCircle } from "lucide-react";
 import { formatApproxKrw } from "@/lib/quote/format";
 import type { QuoteResult } from "@/lib/quote/types";
+import { REGION_LABEL, coursesOf, nightsLabel, nightsOf, pickDefaults, regionsOf } from "@/lib/quote/courses";
 
 export interface QuoteCourse {
   id: string;
+  region: string;
   name: string;
   nights: number;
   minPax: number;
@@ -75,8 +77,24 @@ function ConsentBox({ checked, onChange, label, text }: { checked: boolean; onCh
 
 export default function QuoteCard({ brand, config, kakaoUrl, onClose }: Props) {
   const courses = config.courses || [];
-  const [courseId, setCourseId] = useState(courses[0]?.id || "");
-  const course = courses.find((c) => c.id === courseId) || courses[0];
+  const regions = regionsOf(courses);
+  const [region, setRegion] = useState(regions[0] || "");
+  const [nights, setNights] = useState<number>(pickDefaults(courses, regions[0] || "").nights);
+  const [courseId, setCourseId] = useState(pickDefaults(courses, regions[0] || "").courseId);
+  const nightOptions = nightsOf(courses, region);
+  const courseOptions = coursesOf(courses, region, nights);
+  const course = courses.find((c) => c.id === courseId) || courseOptions[0] || courses[0];
+
+  function changeRegion(r: string) {
+    const d = pickDefaults(courses, r);
+    setRegion(r);
+    setNights(d.nights);
+    setCourseId(d.courseId);
+  }
+  function changeNights(n: number) {
+    setNights(n);
+    setCourseId(pickDefaults(courses, region, n).courseId);
+  }
   const [route, setRoute] = useState("");
   const [departDate, setDepartDate] = useState("");
   const [adults, setAdults] = useState(2);
@@ -113,7 +131,7 @@ export default function QuoteCard({ brand, config, kakaoUrl, onClose }: Props) {
     if (!departDate) return setError("출발 희망일을 선택해 주세요.");
     setBusy(true);
     try {
-      const { ok, data } = await post({ action: "calculate", brand, input: { courseId, route: route || undefined, departDate, adults, children, infants, withAir } });
+      const { ok, data } = await post({ action: "calculate", brand, input: { courseId: course.id, route: route || undefined, departDate, adults, children, infants, withAir } });
       if (!ok) setError(data?.error || "견적을 계산하지 못했습니다. 잠시 후 다시 시도해 주세요.");
       else {
         setResult(data.result);
@@ -161,10 +179,28 @@ export default function QuoteCard({ brand, config, kakaoUrl, onClose }: Props) {
       </div>
 
       <form onSubmit={calculate} className="space-y-3">
+        <div className="grid grid-cols-2 gap-2">
+          <div>
+            <label className={label} htmlFor="q-region">지역</label>
+            <select id="q-region" value={region} onChange={(e) => changeRegion(e.target.value)} className={input}>
+              {regions.map((r) => (
+                <option key={r} value={r}>{REGION_LABEL[r] || r}</option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label className={label} htmlFor="q-nights">박수</label>
+            <select id="q-nights" value={nights} onChange={(e) => changeNights(Number(e.target.value))} className={input}>
+              {nightOptions.map((n) => (
+                <option key={n} value={n}>{nightsLabel(n)}</option>
+              ))}
+            </select>
+          </div>
+        </div>
         <div>
           <label className={label} htmlFor="q-course">코스</label>
-          <select id="q-course" value={courseId} onChange={(e) => setCourseId(e.target.value)} className={input}>
-            {courses.map((c) => (
+          <select id="q-course" value={course?.id || ""} onChange={(e) => setCourseId(e.target.value)} className={input}>
+            {courseOptions.map((c) => (
               <option key={c.id} value={c.id}>{c.name}</option>
             ))}
           </select>
