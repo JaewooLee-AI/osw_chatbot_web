@@ -137,6 +137,15 @@ describe("홋카이도", () => {
     expect(r.reference).toBe(true);
   });
 
+  it("코스 전용 차량 요금(믹스)은 전역 차량 요금 대신 쓰인다", () => {
+    // 4명, 2026-12-04: 랜드 (22000×4+19000×4+30000+23000)/4 = 54,250 → 54,300 / 개인 18000 / 호텔 NB 14000 + ST 8000×2 = 30,000
+    const r = ok(calculateQuote(FAKE, base({ courseId: "HK4M", route: undefined, departDate: "2026-12-04" })));
+    expect(r.perPersonKrw).toBe(krw(54300 + 18000 + 30000, 150000));
+    // 같은 조건의 노멀(전역 차량 요금)과 금액이 다르다
+    const normal = ok(calculateQuote(FAKE, hk({ departDate: "2026-12-04" })));
+    expect(normal.perPersonKrw).not.toBe(r.perPersonKrw);
+  });
+
   it("호텔 휴관일에 걸리면 담당자 확인", () => {
     const r = calculateQuote(FAKE, hk({ departDate: "2026-12-02" })); // 1일차 숙박 노보리베츠 휴관(12/2~12/3)
     expect(r.status === "handoff" && r.code).toBe("hotel_closed");

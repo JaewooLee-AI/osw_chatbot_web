@@ -120,7 +120,7 @@ function calcShizuoka(rs: Ruleset, c: ShizuokaCourse, input: QuoteInput, pax: nu
 }
 
 function calcHokkaido(rs: Ruleset, c: HokkaidoCourse, input: QuoteInput, pax: number, nightDates: number[]): Computed | QuoteHandoff {
-  const veh = rs.hokkaidoVehicles.find((v) => pax >= v.minPax && pax <= v.maxPax);
+  const veh = (c.vehicles ?? rs.hokkaidoVehicles).find((v) => pax >= v.minPax && pax <= v.maxPax);
   if (!veh) return handoff("pax_out_of_range", MSG.pax);
 
   // 호텔: 날짜별 요금. 요금표에 없는 날짜는 담당자 확인, 휴관일은 담당자 확인.

@@ -9,7 +9,7 @@ import type { QuoteInput } from "../src/lib/quote/types";
 const today = "2026-10-01";
 const dates = ["2026-10-20", "2026-11-06", "2026-11-22", "2026-11-28", "2026-12-01", "2026-12-02", "2026-12-04", "2026-12-22", "2026-12-24", "2027-06-01", "2026-09-30", "2026-09-18"];
 const inputs: QuoteInput[] = [];
-for (const courseId of ["SZ4D", "HK4D", "HK3D"]) {
+for (const courseId of ["SZ4D", "HK4D", "HK4M", "HK3D"]) {
   for (const departDate of dates) {
     for (const [adults, children, infants] of [[2, 0, 0], [3, 0, 0], [4, 0, 1], [2, 2, 0], [5, 0, 0], [8, 1, 0], [9, 0, 0], [10, 0, 0], [12, 0, 0], [14, 0, 0], [15, 0, 0], [1, 0, 0]]) {
       inputs.push({ courseId, departDate, adults, children, infants, route: courseId === "SZ4D" ? "SHZ" : undefined, today });
