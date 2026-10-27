@@ -57,6 +57,22 @@ function Stepper({ label, hint, value, min, onChange }: { label: string; hint?: 
   );
 }
 
+/** 동의 체크 + 전문 보기. 전문은 관리자 앱 [견적 기준] 사용 설정의 문구 그대로 보여 준다. */
+function ConsentBox({ checked, onChange, label, text }: { checked: boolean; onChange: (v: boolean) => void; label: string; text: string }) {
+  return (
+    <div className="text-[12px] text-slate-700 space-y-1">
+      <label className="flex items-start gap-2">
+        <input type="checkbox" checked={checked} onChange={(e) => onChange(e.target.checked)} className="w-4 h-4 mt-0.5" />
+        <span>{label}</span>
+      </label>
+      <details className="pl-6">
+        <summary className="cursor-pointer text-slate-500">전문 보기</summary>
+        <div className="mt-1 max-h-40 overflow-y-auto whitespace-pre-wrap rounded-lg bg-ivory p-2 text-[11px] leading-relaxed text-slate-600">{text}</div>
+      </details>
+    </div>
+  );
+}
+
 export default function QuoteCard({ brand, config, kakaoUrl, onClose }: Props) {
   const courses = config.courses || [];
   const [courseId, setCourseId] = useState(courses[0]?.id || "");
@@ -210,14 +226,18 @@ export default function QuoteCard({ brand, config, kakaoUrl, onClose }: Props) {
               <input aria-label="이름" placeholder="이름" value={name} onChange={(e) => setName(e.target.value)} className={input} autoComplete="name" />
               <input aria-label="연락처" placeholder="연락처 (예: 010-1234-5678)" inputMode="tel" value={phone} onChange={(e) => setPhone(e.target.value)} className={input} autoComplete="tel" />
               <input aria-label="이메일(선택)" placeholder="이메일 (선택)" type="email" value={email} onChange={(e) => setEmail(e.target.value)} className={input} autoComplete="email" />
-              <label className="flex items-start gap-2 text-[12px] text-slate-700">
-                <input type="checkbox" checked={agree} onChange={(e) => setAgree(e.target.checked)} className="w-4 h-4 mt-0.5" />
-                <span>[필수] {config.privacy_text || "견적 안내를 위해 이름·연락처를 수집·이용하는 것에 동의합니다."}</span>
-              </label>
-              <label className="flex items-start gap-2 text-[12px] text-slate-700">
-                <input type="checkbox" checked={agreeMkt} onChange={(e) => setAgreeMkt(e.target.checked)} className="w-4 h-4 mt-0.5" />
-                <span>[선택] {config.marketing_text || "여행 상품·이벤트 안내 수신에 동의합니다."}</span>
-              </label>
+              <ConsentBox
+                checked={agree}
+                onChange={setAgree}
+                label="[필수] 개인정보 수집·이용에 동의합니다."
+                text={config.privacy_text || "견적 안내를 위해 이름·연락처·이메일을 수집·이용하는 것에 동의합니다."}
+              />
+              <ConsentBox
+                checked={agreeMkt}
+                onChange={setAgreeMkt}
+                label="[선택] 마케팅 정보 수신에 동의합니다."
+                text={config.marketing_text || "여행 상품·이벤트 안내 수신에 동의합니다."}
+              />
               <button type="submit" disabled={busy} className="w-full min-h-[44px] rounded-xl bg-navy text-white text-sm font-semibold disabled:opacity-50">
                 {busy ? "보내는 중…" : "보내기"}
               </button>
