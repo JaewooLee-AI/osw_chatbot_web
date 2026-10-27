@@ -181,3 +181,27 @@ describe("화면 표시·입력 확인 도우미", () => {
     expect(isEmail("a@b")).toBe(false);
   });
 });
+
+describe("입력 카드: 지역 → 박수 → 코스 선택", () => {
+  const courses = [
+    { id: "S4", region: "shizuoka", nights: 3 },
+    { id: "SF4", region: "shizuoka", nights: 3 },
+    { id: "S3", region: "shizuoka", nights: 2 },
+    { id: "HN", region: "hokkaido", nights: 3 },
+    { id: "HM", region: "hokkaido", nights: 3 },
+    { id: "H3", region: "hokkaido", nights: 2 },
+    { id: "H5", region: "hokkaido", nights: 4 },
+  ];
+  it("지역·박수·코스 목록", async () => {
+    const { regionsOf, nightsOf, coursesOf, pickDefaults, nightsLabel } = await import("../src/lib/quote/courses");
+    expect(regionsOf(courses)).toEqual(["shizuoka", "hokkaido"]);
+    expect(nightsOf(courses, "shizuoka")).toEqual([2, 3]);
+    expect(nightsOf(courses, "hokkaido")).toEqual([2, 3, 4]);
+    expect(coursesOf(courses, "hokkaido", 3).map((c) => c.id)).toEqual(["HN", "HM"]);
+    expect(nightsLabel(3)).toBe("3박 4일");
+    // 지역을 바꾸면 3박4일 첫 코스, 박수를 바꾸면 그 박수의 첫 코스
+    expect(pickDefaults(courses, "hokkaido")).toEqual({ nights: 3, courseId: "HN" });
+    expect(pickDefaults(courses, "shizuoka", 2)).toEqual({ nights: 2, courseId: "S3" });
+    expect(pickDefaults(courses, "shizuoka", 4)).toEqual({ nights: 3, courseId: "S4" }); // 없는 박수는 3박4일로
+  });
+});
