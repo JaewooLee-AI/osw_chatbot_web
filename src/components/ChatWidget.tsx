@@ -47,6 +47,8 @@ const DEFAULT_CONFIG: WidgetConfig = {
   homepage: DEFAULT_HOMEPAGE,
 };
 
+const PRICE_QUESTION = /가격|요금|얼마|견적|비용|경비|예산|1인/;
+
 function formatTime(date: Date): string {
   return date.toLocaleTimeString("ko-KR", {
     hour: "2-digit",
@@ -126,7 +128,7 @@ export default function ChatWidget({
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages, isLoading, scrollToBottom]);
+  }, [messages, isLoading, quoteOpen, scrollToBottom]);
 
   const sendQuestion = useCallback(
     async (questionText: string) => {
@@ -176,6 +178,8 @@ export default function ChatWidget({
           image: data.image || "",
           destination_badge: data.destination_badge || "",
           buttons: Array.isArray(data.buttons) ? data.buttons : [],
+          // 가격을 묻는 질문에 답했을 때만 가견적 버튼을 붙인다 (간단견적이 켜져 있을 때)
+          showQuote: Boolean(config.quote?.enabled) && data.status === "answered" && PRICE_QUESTION.test(q),
         };
         setMessages((prev) => [...prev, botMsg]);
       } catch {
@@ -200,7 +204,7 @@ export default function ChatWidget({
         setIsLoading(false);
       }
     },
-    [brand, config.kakao_chat_url, isLoading, messages, selectedType]
+    [brand, config.kakao_chat_url, config.quote?.enabled, isLoading, messages, selectedType]
   );
 
   // 외부에서 초기 질문이 전달된 경우 1회 자동 실행
@@ -363,10 +367,6 @@ export default function ChatWidget({
           )}
         </div>
 
-        {quoteOpen && config.quote?.enabled && (
-          <QuoteCard brand={brand} config={config.quote} kakaoUrl={config.kakao_chat_url} onClose={() => setQuoteOpen(false)} />
-        )}
-
         {/* Rendered Conversation Messages */}
         {messages.map((msg, index) => {
           const prevUserQuestion =
@@ -378,9 +378,14 @@ export default function ChatWidget({
               key={msg.id}
               message={msg}
               originalQuestion={prevUserQuestion}
+              onQuote={() => setQuoteOpen(true)}
             />
           );
         })}
+
+        {quoteOpen && config.quote?.enabled && (
+          <QuoteCard brand={brand} config={config.quote} kakaoUrl={config.kakao_chat_url} onClose={() => setQuoteOpen(false)} />
+        )}
 
         {/* Loading Indicator */}
         {isLoading && (

@@ -10,6 +10,7 @@ import {
   CheckCircle2,
   AlertCircle,
   HelpCircle,
+  Calculator,
 } from "lucide-react";
 import type { HandoffButton } from "@/lib/handoff";
 
@@ -24,16 +25,20 @@ export interface ChatMessageItem {
   image?: string;
   destination_badge?: string;
   buttons?: HandoffButton[];
+  /** 가격 질문에 대한 답변 아래에 [내 조건으로 가견적 받기] 버튼을 보일지 */
+  showQuote?: boolean;
 }
 
 interface MessageBubbleProps {
   message: ChatMessageItem;
   originalQuestion?: string;
+  onQuote?: () => void;
 }
 
 export default function MessageBubble({
   message,
   originalQuestion,
+  onQuote,
 }: MessageBubbleProps) {
   const [imgError, setImgError] = useState(false);
   const isUser = message.role === "user";
@@ -120,6 +125,17 @@ export default function MessageBubble({
           <div className="text-[15px] leading-[1.65] text-navy whitespace-pre-wrap break-words">
             {message.content}
           </div>
+
+          {message.showQuote && onQuote && (
+            <button
+              type="button"
+              onClick={onQuote}
+              className="w-full min-h-[46px] bg-navy hover:bg-navy-dark active:scale-[0.99] text-white font-semibold text-sm px-4 py-2.5 rounded-xl shadow-sm transition-all flex items-center justify-center gap-2"
+            >
+              <Calculator className="w-4 h-4 shrink-0" />
+              내 조건으로 가견적 받기
+            </button>
+          )}
 
           {/* 3 Action Handoff Buttons (Product / Google Form Prefill / Kakao 1:1) */}
           {message.buttons && message.buttons.length > 0 && (

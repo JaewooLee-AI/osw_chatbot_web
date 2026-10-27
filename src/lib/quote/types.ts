@@ -79,7 +79,7 @@ export interface HokkaidoCourse extends CourseBase {
   hotelsPerNight: string[]; // ruleset.hokkaidoHotels 의 코드
   personal:
     | { mode: "fixed"; jpy: number } // 3박4일: 요금표의 개인 비용 합계
-    | { mode: "counted"; localMeals: number; spots: number; specialsJpy: number }; // 2박3일·4박5일: 끼니·방문지 수로 단순 계산
+    | { mode: "counted"; localMeals: number; spots: number; specialsJpy: number }; // 2박3일·4박5일: spots = 요금표에 비용이 없는 방문지 수(× 단가), specialsJpy = 요금표에 비용이 있는 관광지·특전 합계
 }
 
 export type Course = ShizuokaCourse | HokkaidoCourse;
