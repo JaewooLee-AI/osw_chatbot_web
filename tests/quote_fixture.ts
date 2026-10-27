@@ -112,6 +112,23 @@ export const FAKE: Ruleset = {
       personal: { mode: "fixed", jpy: 20000 },
     },
     {
+      id: "HK4M",
+      region: "hokkaido",
+      name: "홋카이도 3박 4일 믹스",
+      nights: 3,
+      itinerary: ["1일차", "2일차", "3일차", "4일차"],
+      minPax: 2,
+      maxPax: 14,
+      hotelsPerNight: ["NB", "ST", "ST"],
+      personal: { mode: "fixed", jpy: 18000 },
+      // 노멀과 제반 비용·숙박 식대가 다른 코스 전용 차량 요금
+      vehicles: [
+        { id: "alphard", minPax: 2, maxPax: 4, carPerDayJpy: 22000, guidePerDayJpy: 19000, miscOnceJpy: 30000, guideLodgingMealsJpy: 23000, driverLodgingMealsJpy: 0 },
+        { id: "hiace", minPax: 5, maxPax: 9, carPerDayJpy: 22000, guidePerDayJpy: 19000, miscOnceJpy: 30000, guideLodgingMealsJpy: 23000, driverLodgingMealsJpy: 0 },
+        { id: "micro", minPax: 10, maxPax: 14, carPerDayJpy: 95000, guidePerDayJpy: 19000, miscOnceJpy: 28000, guideLodgingMealsJpy: 26000, driverLodgingMealsJpy: 44000 },
+      ],
+    },
+    {
       id: "HK3D",
       region: "hokkaido",
       name: "홋카이도 2박 3일",

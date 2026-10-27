@@ -349,6 +349,61 @@
     }
    },
    {
+    "id": "HK4M",
+    "region": "hokkaido",
+    "name": "홋카이도 3박 4일 믹스",
+    "nights": 3,
+    "itinerary": [
+     "1일차",
+     "2일차",
+     "3일차",
+     "4일차"
+    ],
+    "minPax": 2,
+    "maxPax": 14,
+    "hotelsPerNight": [
+     "NB",
+     "ST",
+     "ST"
+    ],
+    "personal": {
+     "mode": "fixed",
+     "jpy": 18000
+    },
+    "vehicles": [
+     {
+      "id": "alphard",
+      "minPax": 2,
+      "maxPax": 4,
+      "carPerDayJpy": 22000,
+      "guidePerDayJpy": 19000,
+      "miscOnceJpy": 30000,
+      "guideLodgingMealsJpy": 23000,
+      "driverLodgingMealsJpy": 0
+     },
+     {
+      "id": "hiace",
+      "minPax": 5,
+      "maxPax": 9,
+      "carPerDayJpy": 22000,
+      "guidePerDayJpy": 19000,
+      "miscOnceJpy": 30000,
+      "guideLodgingMealsJpy": 23000,
+      "driverLodgingMealsJpy": 0
+     },
+     {
+      "id": "micro",
+      "minPax": 10,
+      "maxPax": 14,
+      "carPerDayJpy": 95000,
+      "guidePerDayJpy": 19000,
+      "miscOnceJpy": 28000,
+      "guideLodgingMealsJpy": 26000,
+      "driverLodgingMealsJpy": 44000
+     }
+    ]
+   },
+   {
     "id": "HK3D",
     "region": "hokkaido",
     "name": "홋카이도 2박 3일",
@@ -6073,6 +6128,2386 @@
   {
    "input": {
     "courseId": "HK4D",
+    "departDate": "2026-09-18",
+    "adults": 1,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "invalid_input",
+    "message": "입력하신 조건은 자동 견적이 어렵습니다. 담당자가 확인 후 정확히 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-10-20",
+    "adults": 2,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-10-20",
+    "adults": 3,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-10-20",
+    "adults": 4,
+    "children": 0,
+    "infants": 1,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-10-20",
+    "adults": 2,
+    "children": 2,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-10-20",
+    "adults": 5,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-10-20",
+    "adults": 8,
+    "children": 1,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-10-20",
+    "adults": 9,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-10-20",
+    "adults": 10,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-10-20",
+    "adults": 12,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-10-20",
+    "adults": 14,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-10-20",
+    "adults": 15,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "pax_out_of_range",
+    "message": "이 인원은 자동 견적 범위를 벗어나 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-10-20",
+    "adults": 1,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "pax_out_of_range",
+    "message": "이 인원은 자동 견적 범위를 벗어나 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-11-06",
+    "adults": 2,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-11-06",
+    "adults": 3,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-11-06",
+    "adults": 4,
+    "children": 0,
+    "infants": 1,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-11-06",
+    "adults": 2,
+    "children": 2,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-11-06",
+    "adults": 5,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-11-06",
+    "adults": 8,
+    "children": 1,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-11-06",
+    "adults": 9,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-11-06",
+    "adults": 10,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-11-06",
+    "adults": 12,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-11-06",
+    "adults": 14,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-11-06",
+    "adults": 15,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "pax_out_of_range",
+    "message": "이 인원은 자동 견적 범위를 벗어나 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-11-06",
+    "adults": 1,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "pax_out_of_range",
+    "message": "이 인원은 자동 견적 범위를 벗어나 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-11-22",
+    "adults": 2,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-11-22",
+    "adults": 3,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-11-22",
+    "adults": 4,
+    "children": 0,
+    "infants": 1,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-11-22",
+    "adults": 2,
+    "children": 2,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-11-22",
+    "adults": 5,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-11-22",
+    "adults": 8,
+    "children": 1,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-11-22",
+    "adults": 9,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-11-22",
+    "adults": 10,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-11-22",
+    "adults": 12,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-11-22",
+    "adults": 14,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-11-22",
+    "adults": 15,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "pax_out_of_range",
+    "message": "이 인원은 자동 견적 범위를 벗어나 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-11-22",
+    "adults": 1,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "pax_out_of_range",
+    "message": "이 인원은 자동 견적 범위를 벗어나 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-11-28",
+    "adults": 2,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-11-28",
+    "adults": 3,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-11-28",
+    "adults": 4,
+    "children": 0,
+    "infants": 1,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-11-28",
+    "adults": 2,
+    "children": 2,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-11-28",
+    "adults": 5,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-11-28",
+    "adults": 8,
+    "children": 1,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-11-28",
+    "adults": 9,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-11-28",
+    "adults": 10,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-11-28",
+    "adults": 12,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-11-28",
+    "adults": 14,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-11-28",
+    "adults": 15,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "pax_out_of_range",
+    "message": "이 인원은 자동 견적 범위를 벗어나 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-11-28",
+    "adults": 1,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "pax_out_of_range",
+    "message": "이 인원은 자동 견적 범위를 벗어나 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-01",
+    "adults": 2,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "ok",
+    "courseId": "HK4M",
+    "courseName": "홋카이도 3박 4일 믹스",
+    "perPersonKrw": 1751000,
+    "chargeablePax": 2,
+    "itinerary": [
+     "1일차",
+     "2일차",
+     "3일차",
+     "4일차"
+    ],
+    "surchargeNames": [],
+    "reference": false,
+    "notes": []
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-01",
+    "adults": 3,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "ok",
+    "courseId": "HK4M",
+    "courseName": "홋카이도 3박 4일 믹스",
+    "perPersonKrw": 1316000,
+    "chargeablePax": 3,
+    "itinerary": [
+     "1일차",
+     "2일차",
+     "3일차",
+     "4일차"
+    ],
+    "surchargeNames": [],
+    "reference": false,
+    "notes": []
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-01",
+    "adults": 4,
+    "children": 0,
+    "infants": 1,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "ok",
+    "courseId": "HK4M",
+    "courseName": "홋카이도 3박 4일 믹스",
+    "perPersonKrw": 1098000,
+    "chargeablePax": 4,
+    "itinerary": [
+     "1일차",
+     "2일차",
+     "3일차",
+     "4일차"
+    ],
+    "surchargeNames": [],
+    "reference": false,
+    "notes": []
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-01",
+    "adults": 2,
+    "children": 2,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "ok",
+    "courseId": "HK4M",
+    "courseName": "홋카이도 3박 4일 믹스",
+    "perPersonKrw": 1098000,
+    "chargeablePax": 4,
+    "itinerary": [
+     "1일차",
+     "2일차",
+     "3일차",
+     "4일차"
+    ],
+    "surchargeNames": [],
+    "reference": false,
+    "notes": []
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-01",
+    "adults": 5,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "ok",
+    "courseId": "HK4M",
+    "courseName": "홋카이도 3박 4일 믹스",
+    "perPersonKrw": 947000,
+    "chargeablePax": 5,
+    "itinerary": [
+     "1일차",
+     "2일차",
+     "3일차",
+     "4일차"
+    ],
+    "surchargeNames": [],
+    "reference": false,
+    "notes": []
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-01",
+    "adults": 8,
+    "children": 1,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "ok",
+    "courseId": "HK4M",
+    "courseName": "홋카이도 3박 4일 믹스",
+    "perPersonKrw": 749000,
+    "chargeablePax": 9,
+    "itinerary": [
+     "1일차",
+     "2일차",
+     "3일차",
+     "4일차"
+    ],
+    "surchargeNames": [],
+    "reference": false,
+    "notes": []
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-01",
+    "adults": 9,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "ok",
+    "courseId": "HK4M",
+    "courseName": "홋카이도 3박 4일 믹스",
+    "perPersonKrw": 749000,
+    "chargeablePax": 9,
+    "itinerary": [
+     "1일차",
+     "2일차",
+     "3일차",
+     "4일차"
+    ],
+    "surchargeNames": [],
+    "reference": false,
+    "notes": []
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-01",
+    "adults": 10,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "ok",
+    "courseId": "HK4M",
+    "courseName": "홋카이도 3박 4일 믹스",
+    "perPersonKrw": 1039000,
+    "chargeablePax": 10,
+    "itinerary": [
+     "1일차",
+     "2일차",
+     "3일차",
+     "4일차"
+    ],
+    "surchargeNames": [],
+    "reference": false,
+    "notes": []
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-01",
+    "adults": 12,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "ok",
+    "courseId": "HK4M",
+    "courseName": "홋카이도 3박 4일 믹스",
+    "perPersonKrw": 953000,
+    "chargeablePax": 12,
+    "itinerary": [
+     "1일차",
+     "2일차",
+     "3일차",
+     "4일차"
+    ],
+    "surchargeNames": [],
+    "reference": false,
+    "notes": []
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-01",
+    "adults": 14,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "ok",
+    "courseId": "HK4M",
+    "courseName": "홋카이도 3박 4일 믹스",
+    "perPersonKrw": 892000,
+    "chargeablePax": 14,
+    "itinerary": [
+     "1일차",
+     "2일차",
+     "3일차",
+     "4일차"
+    ],
+    "surchargeNames": [],
+    "reference": false,
+    "notes": []
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-01",
+    "adults": 15,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "pax_out_of_range",
+    "message": "이 인원은 자동 견적 범위를 벗어나 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-01",
+    "adults": 1,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "pax_out_of_range",
+    "message": "이 인원은 자동 견적 범위를 벗어나 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-02",
+    "adults": 2,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "hotel_closed",
+    "message": "선택하신 일정에 호텔 휴관일이 포함되어 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-02",
+    "adults": 3,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "hotel_closed",
+    "message": "선택하신 일정에 호텔 휴관일이 포함되어 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-02",
+    "adults": 4,
+    "children": 0,
+    "infants": 1,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "hotel_closed",
+    "message": "선택하신 일정에 호텔 휴관일이 포함되어 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-02",
+    "adults": 2,
+    "children": 2,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "hotel_closed",
+    "message": "선택하신 일정에 호텔 휴관일이 포함되어 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-02",
+    "adults": 5,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "hotel_closed",
+    "message": "선택하신 일정에 호텔 휴관일이 포함되어 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-02",
+    "adults": 8,
+    "children": 1,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "hotel_closed",
+    "message": "선택하신 일정에 호텔 휴관일이 포함되어 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-02",
+    "adults": 9,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "hotel_closed",
+    "message": "선택하신 일정에 호텔 휴관일이 포함되어 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-02",
+    "adults": 10,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "hotel_closed",
+    "message": "선택하신 일정에 호텔 휴관일이 포함되어 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-02",
+    "adults": 12,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "hotel_closed",
+    "message": "선택하신 일정에 호텔 휴관일이 포함되어 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-02",
+    "adults": 14,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "hotel_closed",
+    "message": "선택하신 일정에 호텔 휴관일이 포함되어 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-02",
+    "adults": 15,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "pax_out_of_range",
+    "message": "이 인원은 자동 견적 범위를 벗어나 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-02",
+    "adults": 1,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "pax_out_of_range",
+    "message": "이 인원은 자동 견적 범위를 벗어나 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-04",
+    "adults": 2,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "ok",
+    "courseId": "HK4M",
+    "courseName": "홋카이도 3박 4일 믹스",
+    "perPersonKrw": 1751000,
+    "chargeablePax": 2,
+    "itinerary": [
+     "1일차",
+     "2일차",
+     "3일차",
+     "4일차"
+    ],
+    "surchargeNames": [],
+    "reference": false,
+    "notes": []
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-04",
+    "adults": 3,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "ok",
+    "courseId": "HK4M",
+    "courseName": "홋카이도 3박 4일 믹스",
+    "perPersonKrw": 1316000,
+    "chargeablePax": 3,
+    "itinerary": [
+     "1일차",
+     "2일차",
+     "3일차",
+     "4일차"
+    ],
+    "surchargeNames": [],
+    "reference": false,
+    "notes": []
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-04",
+    "adults": 4,
+    "children": 0,
+    "infants": 1,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "ok",
+    "courseId": "HK4M",
+    "courseName": "홋카이도 3박 4일 믹스",
+    "perPersonKrw": 1098000,
+    "chargeablePax": 4,
+    "itinerary": [
+     "1일차",
+     "2일차",
+     "3일차",
+     "4일차"
+    ],
+    "surchargeNames": [],
+    "reference": false,
+    "notes": []
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-04",
+    "adults": 2,
+    "children": 2,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "ok",
+    "courseId": "HK4M",
+    "courseName": "홋카이도 3박 4일 믹스",
+    "perPersonKrw": 1098000,
+    "chargeablePax": 4,
+    "itinerary": [
+     "1일차",
+     "2일차",
+     "3일차",
+     "4일차"
+    ],
+    "surchargeNames": [],
+    "reference": false,
+    "notes": []
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-04",
+    "adults": 5,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "ok",
+    "courseId": "HK4M",
+    "courseName": "홋카이도 3박 4일 믹스",
+    "perPersonKrw": 947000,
+    "chargeablePax": 5,
+    "itinerary": [
+     "1일차",
+     "2일차",
+     "3일차",
+     "4일차"
+    ],
+    "surchargeNames": [],
+    "reference": false,
+    "notes": []
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-04",
+    "adults": 8,
+    "children": 1,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "ok",
+    "courseId": "HK4M",
+    "courseName": "홋카이도 3박 4일 믹스",
+    "perPersonKrw": 749000,
+    "chargeablePax": 9,
+    "itinerary": [
+     "1일차",
+     "2일차",
+     "3일차",
+     "4일차"
+    ],
+    "surchargeNames": [],
+    "reference": false,
+    "notes": []
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-04",
+    "adults": 9,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "ok",
+    "courseId": "HK4M",
+    "courseName": "홋카이도 3박 4일 믹스",
+    "perPersonKrw": 749000,
+    "chargeablePax": 9,
+    "itinerary": [
+     "1일차",
+     "2일차",
+     "3일차",
+     "4일차"
+    ],
+    "surchargeNames": [],
+    "reference": false,
+    "notes": []
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-04",
+    "adults": 10,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "ok",
+    "courseId": "HK4M",
+    "courseName": "홋카이도 3박 4일 믹스",
+    "perPersonKrw": 1039000,
+    "chargeablePax": 10,
+    "itinerary": [
+     "1일차",
+     "2일차",
+     "3일차",
+     "4일차"
+    ],
+    "surchargeNames": [],
+    "reference": false,
+    "notes": []
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-04",
+    "adults": 12,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "ok",
+    "courseId": "HK4M",
+    "courseName": "홋카이도 3박 4일 믹스",
+    "perPersonKrw": 953000,
+    "chargeablePax": 12,
+    "itinerary": [
+     "1일차",
+     "2일차",
+     "3일차",
+     "4일차"
+    ],
+    "surchargeNames": [],
+    "reference": false,
+    "notes": []
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-04",
+    "adults": 14,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "ok",
+    "courseId": "HK4M",
+    "courseName": "홋카이도 3박 4일 믹스",
+    "perPersonKrw": 892000,
+    "chargeablePax": 14,
+    "itinerary": [
+     "1일차",
+     "2일차",
+     "3일차",
+     "4일차"
+    ],
+    "surchargeNames": [],
+    "reference": false,
+    "notes": []
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-04",
+    "adults": 15,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "pax_out_of_range",
+    "message": "이 인원은 자동 견적 범위를 벗어나 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-04",
+    "adults": 1,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "pax_out_of_range",
+    "message": "이 인원은 자동 견적 범위를 벗어나 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-22",
+    "adults": 2,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-22",
+    "adults": 3,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-22",
+    "adults": 4,
+    "children": 0,
+    "infants": 1,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-22",
+    "adults": 2,
+    "children": 2,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-22",
+    "adults": 5,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-22",
+    "adults": 8,
+    "children": 1,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-22",
+    "adults": 9,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-22",
+    "adults": 10,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-22",
+    "adults": 12,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-22",
+    "adults": 14,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-22",
+    "adults": 15,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "pax_out_of_range",
+    "message": "이 인원은 자동 견적 범위를 벗어나 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-22",
+    "adults": 1,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "pax_out_of_range",
+    "message": "이 인원은 자동 견적 범위를 벗어나 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-24",
+    "adults": 2,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "peak_season",
+    "message": "성수기 기간이 포함되어 요금이 달라질 수 있어 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-24",
+    "adults": 3,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "peak_season",
+    "message": "성수기 기간이 포함되어 요금이 달라질 수 있어 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-24",
+    "adults": 4,
+    "children": 0,
+    "infants": 1,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "peak_season",
+    "message": "성수기 기간이 포함되어 요금이 달라질 수 있어 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-24",
+    "adults": 2,
+    "children": 2,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "peak_season",
+    "message": "성수기 기간이 포함되어 요금이 달라질 수 있어 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-24",
+    "adults": 5,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "peak_season",
+    "message": "성수기 기간이 포함되어 요금이 달라질 수 있어 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-24",
+    "adults": 8,
+    "children": 1,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "peak_season",
+    "message": "성수기 기간이 포함되어 요금이 달라질 수 있어 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-24",
+    "adults": 9,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "peak_season",
+    "message": "성수기 기간이 포함되어 요금이 달라질 수 있어 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-24",
+    "adults": 10,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "peak_season",
+    "message": "성수기 기간이 포함되어 요금이 달라질 수 있어 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-24",
+    "adults": 12,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "peak_season",
+    "message": "성수기 기간이 포함되어 요금이 달라질 수 있어 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-24",
+    "adults": 14,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "peak_season",
+    "message": "성수기 기간이 포함되어 요금이 달라질 수 있어 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-24",
+    "adults": 15,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "pax_out_of_range",
+    "message": "이 인원은 자동 견적 범위를 벗어나 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-12-24",
+    "adults": 1,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "pax_out_of_range",
+    "message": "이 인원은 자동 견적 범위를 벗어나 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2027-06-01",
+    "adults": 2,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2027-06-01",
+    "adults": 3,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2027-06-01",
+    "adults": 4,
+    "children": 0,
+    "infants": 1,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2027-06-01",
+    "adults": 2,
+    "children": 2,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2027-06-01",
+    "adults": 5,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2027-06-01",
+    "adults": 8,
+    "children": 1,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2027-06-01",
+    "adults": 9,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2027-06-01",
+    "adults": 10,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2027-06-01",
+    "adults": 12,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2027-06-01",
+    "adults": 14,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "no_rate_for_date",
+    "message": "선택하신 날짜의 요금이 아직 등록되지 않아 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2027-06-01",
+    "adults": 15,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "pax_out_of_range",
+    "message": "이 인원은 자동 견적 범위를 벗어나 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2027-06-01",
+    "adults": 1,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "pax_out_of_range",
+    "message": "이 인원은 자동 견적 범위를 벗어나 담당자가 확인 후 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-09-30",
+    "adults": 2,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "invalid_input",
+    "message": "입력하신 조건은 자동 견적이 어렵습니다. 담당자가 확인 후 정확히 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-09-30",
+    "adults": 3,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "invalid_input",
+    "message": "입력하신 조건은 자동 견적이 어렵습니다. 담당자가 확인 후 정확히 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-09-30",
+    "adults": 4,
+    "children": 0,
+    "infants": 1,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "invalid_input",
+    "message": "입력하신 조건은 자동 견적이 어렵습니다. 담당자가 확인 후 정확히 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-09-30",
+    "adults": 2,
+    "children": 2,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "invalid_input",
+    "message": "입력하신 조건은 자동 견적이 어렵습니다. 담당자가 확인 후 정확히 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-09-30",
+    "adults": 5,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "invalid_input",
+    "message": "입력하신 조건은 자동 견적이 어렵습니다. 담당자가 확인 후 정확히 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-09-30",
+    "adults": 8,
+    "children": 1,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "invalid_input",
+    "message": "입력하신 조건은 자동 견적이 어렵습니다. 담당자가 확인 후 정확히 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-09-30",
+    "adults": 9,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "invalid_input",
+    "message": "입력하신 조건은 자동 견적이 어렵습니다. 담당자가 확인 후 정확히 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-09-30",
+    "adults": 10,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "invalid_input",
+    "message": "입력하신 조건은 자동 견적이 어렵습니다. 담당자가 확인 후 정확히 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-09-30",
+    "adults": 12,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "invalid_input",
+    "message": "입력하신 조건은 자동 견적이 어렵습니다. 담당자가 확인 후 정확히 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-09-30",
+    "adults": 14,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "invalid_input",
+    "message": "입력하신 조건은 자동 견적이 어렵습니다. 담당자가 확인 후 정확히 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-09-30",
+    "adults": 15,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "invalid_input",
+    "message": "입력하신 조건은 자동 견적이 어렵습니다. 담당자가 확인 후 정확히 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-09-30",
+    "adults": 1,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "invalid_input",
+    "message": "입력하신 조건은 자동 견적이 어렵습니다. 담당자가 확인 후 정확히 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-09-18",
+    "adults": 2,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "invalid_input",
+    "message": "입력하신 조건은 자동 견적이 어렵습니다. 담당자가 확인 후 정확히 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-09-18",
+    "adults": 3,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "invalid_input",
+    "message": "입력하신 조건은 자동 견적이 어렵습니다. 담당자가 확인 후 정확히 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-09-18",
+    "adults": 4,
+    "children": 0,
+    "infants": 1,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "invalid_input",
+    "message": "입력하신 조건은 자동 견적이 어렵습니다. 담당자가 확인 후 정확히 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-09-18",
+    "adults": 2,
+    "children": 2,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "invalid_input",
+    "message": "입력하신 조건은 자동 견적이 어렵습니다. 담당자가 확인 후 정확히 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-09-18",
+    "adults": 5,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "invalid_input",
+    "message": "입력하신 조건은 자동 견적이 어렵습니다. 담당자가 확인 후 정확히 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-09-18",
+    "adults": 8,
+    "children": 1,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "invalid_input",
+    "message": "입력하신 조건은 자동 견적이 어렵습니다. 담당자가 확인 후 정확히 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-09-18",
+    "adults": 9,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "invalid_input",
+    "message": "입력하신 조건은 자동 견적이 어렵습니다. 담당자가 확인 후 정확히 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-09-18",
+    "adults": 10,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "invalid_input",
+    "message": "입력하신 조건은 자동 견적이 어렵습니다. 담당자가 확인 후 정확히 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-09-18",
+    "adults": 12,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "invalid_input",
+    "message": "입력하신 조건은 자동 견적이 어렵습니다. 담당자가 확인 후 정확히 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-09-18",
+    "adults": 14,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "invalid_input",
+    "message": "입력하신 조건은 자동 견적이 어렵습니다. 담당자가 확인 후 정확히 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
+    "departDate": "2026-09-18",
+    "adults": 15,
+    "children": 0,
+    "infants": 0,
+    "today": "2026-10-01"
+   },
+   "expected": {
+    "status": "handoff",
+    "code": "invalid_input",
+    "message": "입력하신 조건은 자동 견적이 어렵습니다. 담당자가 확인 후 정확히 안내드리겠습니다."
+   }
+  },
+  {
+   "input": {
+    "courseId": "HK4M",
     "departDate": "2026-09-18",
     "adults": 1,
     "children": 0,
