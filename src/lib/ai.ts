@@ -3,6 +3,7 @@ import {
   EMBED_MODEL,
   EMBED_TASK_QUERY,
 } from "./supabase";
+import { estimateTokens, parseUsage, reportUsage, UsageKind } from "./usage";
 
 const GEMINI_BASE = "https://generativelanguage.googleapis.com/v1beta";
 const RETRYABLE_STATUS = new Set([429, 500, 502, 503, 504]);
@@ -123,6 +124,16 @@ export async function embedQuery(
     deadline
   );
 
+  // 임베딩 응답에는 토큰 수가 없어 글자 수로 추정한다 (estimated 표시)
+  reportUsage({
+    kind: "embed",
+    provider: "gemini",
+    model: EMBED_MODEL,
+    inputTokens: estimateTokens(text),
+    outputTokens: 0,
+    cachedTokens: 0,
+    estimated: true,
+  });
   const embs = data?.embeddings || [];
   if (!embs.length) {
     throw new AIError("임베딩 응답이 비어 있습니다.");
@@ -142,7 +153,8 @@ export async function generateAnswer(
   key: string,
   system: string,
   prompt: string,
-  deadline?: number
+  deadline?: number,
+  kind: UsageKind = "answer"
 ): Promise<string> {
   if (!key) {
     throw new AIError(
@@ -151,10 +163,10 @@ export async function generateAnswer(
   }
 
   if (provider === "claude") {
-    return generateClaude(model, key, system, prompt, deadline);
+    return generateClaude(model, key, system, prompt, deadline, kind);
   }
   if (provider === "openai") {
-    return generateOpenAI(model, key, system, prompt, deadline);
+    return generateOpenAI(model, key, system, prompt, deadline, kind);
   }
 
   const data = await geminiPost(
@@ -169,6 +181,7 @@ export async function generateAnswer(
     deadline
   );
 
+  recordGenerated("gemini", model, kind, data, system + prompt);
   const cands = data?.candidates || [];
   const parts = cands[0]?.content?.parts || [];
   const text = parts
@@ -183,12 +196,27 @@ export async function generateAnswer(
   return text;
 }
 
+/** 답변 생성 호출 직후 사용량 기록 — 응답에 사용량이 없으면 글자 수로 추정한다. */
+function recordGenerated(provider: string, model: string, kind: UsageKind, data: any, inputText: string) {
+  const u = parseUsage(provider, data);
+  reportUsage({
+    kind,
+    provider,
+    model,
+    inputTokens: u ? u.inputTokens : estimateTokens(inputText),
+    outputTokens: u ? u.outputTokens : 0,
+    cachedTokens: u ? u.cachedTokens : 0,
+    estimated: !u,
+  });
+}
+
 async function generateClaude(
   model: string,
   key: string,
   system: string,
   prompt: string,
-  deadline?: number
+  deadline?: number,
+  kind: UsageKind = "answer"
 ): Promise<string> {
   const budget = attemptBudget(25000, deadline);
   if (budget === 0) {
@@ -224,6 +252,7 @@ async function generateClaude(
       throw new AIError(`Claude 호출 실패 (HTTP ${resp.status}): ${errText.slice(0, 200)}`);
     }
     const data = await resp.json();
+    recordGenerated("claude", model, kind, data, system + prompt);
     if (data?.stop_reason === "refusal") {
       throw new AIError("Claude가 이 질문에 대한 답변을 거절했습니다.");
     }
@@ -264,7 +293,8 @@ async function generateOpenAI(
   key: string,
   system: string,
   prompt: string,
-  deadline?: number
+  deadline?: number,
+  kind: UsageKind = "answer"
 ): Promise<string> {
   const payload: Record<string, unknown> = {
     model,
@@ -293,6 +323,7 @@ async function generateOpenAI(
       clearTimeout(timer);
       if (resp.ok) {
         const data = await resp.json();
+        recordGenerated("openai", model, kind, data, system + prompt);
         const text = extractOpenAIText(data);
         if (!text) {
           const why = data?.incomplete_details?.reason || data?.status || "";

@@ -1,8 +1,9 @@
-import { NextRequest, NextResponse } from "next/server";
+import { after, NextRequest, NextResponse } from "next/server";
 import { isAllowedOrigin, withinRateLimit } from "@/lib/guard";
 import { answerQuestion, ChatTurn } from "@/lib/rag";
 import { DEFAULT_BRAND, getSettings } from "@/lib/supabase";
 import { DEFAULT_KAKAO_CHAT_URL as KAKAO_FALLBACK_URL } from "@/lib/widgetConfig";
+import { flushUsage, newUsageContext, runWithUsage } from "@/lib/usage";
 
 // vercel.json maxDuration(30초) 안에 반드시 JSON으로 답하도록, AI 호출은 요청 시작 후 이 시간 안에 끝낸다.
 // 남는 몇 초는 설정·검색·기록(Supabase)에 쓴다. 넘기면 상담 연결 안내로 끝난다.
@@ -94,15 +95,20 @@ export async function POST(req: NextRequest) {
       travelType && travelType !== "전체" ? [travelType] : null;
 
     const settings = await getSettings(brand);
-    const ans = await answerQuestion({
-      brand,
-      question: rawQuestion,
-      settings,
-      travelTypes,
-      history,
-      log: true,
-      deadline,
-    });
+    // 이 질문에서 일어난 AI 호출의 토큰 사용량을 모아 두었다가, 답을 보낸 뒤 기록한다(답변 속도에 영향 없음).
+    const usage = newUsageContext(brand, "web");
+    const ans = await runWithUsage(usage, () =>
+      answerQuestion({
+        brand,
+        question: rawQuestion,
+        settings,
+        travelTypes,
+        history,
+        log: true,
+        deadline,
+      })
+    );
+    after(() => flushUsage(usage));
 
     return NextResponse.json({
       text: ans.text,

@@ -133,7 +133,7 @@ ${question}`;
       getProviderModel(provider),
       getApiKey(provider),
     ]);
-    const out = await generateAnswer(provider, model, key, system, prompt, deadline);
+    const out = await generateAnswer(provider, model, key, system, prompt, deadline, "rewrite");
     const firstLine = out
       .trim()
       .split(/\r?\n/)[0]
