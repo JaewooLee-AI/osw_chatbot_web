@@ -10,8 +10,10 @@ import {
   MessageCircle,
   Plane,
   ChevronRight,
+  Calculator,
 } from "lucide-react";
 import MessageBubble, { ChatMessageItem } from "./MessageBubble";
+import QuoteCard, { QuoteConfig } from "./QuoteCard";
 import {
   DEFAULT_BRAND_CODE,
   DEFAULT_BRAND_LABEL,
@@ -31,6 +33,7 @@ interface WidgetConfig {
   operating_hours: string;
   kakao_chat_url: string;
   homepage: string;
+  quote?: QuoteConfig;
 }
 
 // /api/config를 받기 전·실패했을 때 쓰는 값. 서버와 같은 원본(widgetConfig.ts)을 쓴다.
@@ -43,6 +46,8 @@ const DEFAULT_CONFIG: WidgetConfig = {
   kakao_chat_url: DEFAULT_KAKAO_CHAT_URL,
   homepage: DEFAULT_HOMEPAGE,
 };
+
+const PRICE_QUESTION = /가격|요금|얼마|견적|비용|경비|예산|1인/;
 
 function formatTime(date: Date): string {
   return date.toLocaleTimeString("ko-KR", {
@@ -70,6 +75,7 @@ export default function ChatWidget({
   const [messages, setMessages] = useState<ChatMessageItem[]>([]);
   const [input, setInput] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [quoteOpen, setQuoteOpen] = useState<boolean>(false);
   const [viewportHeight, setViewportHeight] = useState<string>("100%");
 
   const scrollEndRef = useRef<HTMLDivElement>(null);
@@ -122,7 +128,7 @@ export default function ChatWidget({
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages, isLoading, scrollToBottom]);
+  }, [messages, isLoading, quoteOpen, scrollToBottom]);
 
   const sendQuestion = useCallback(
     async (questionText: string) => {
@@ -172,6 +178,8 @@ export default function ChatWidget({
           image: data.image || "",
           destination_badge: data.destination_badge || "",
           buttons: Array.isArray(data.buttons) ? data.buttons : [],
+          // 가격을 묻는 질문에 답했을 때만 가견적 버튼을 붙인다 (간단견적이 켜져 있을 때)
+          showQuote: Boolean(config.quote?.enabled) && data.status === "answered" && PRICE_QUESTION.test(q),
         };
         setMessages((prev) => [...prev, botMsg]);
       } catch {
@@ -196,7 +204,7 @@ export default function ChatWidget({
         setIsLoading(false);
       }
     },
-    [brand, config.kakao_chat_url, isLoading, messages, selectedType]
+    [brand, config.kakao_chat_url, config.quote?.enabled, isLoading, messages, selectedType]
   );
 
   // 외부에서 초기 질문이 전달된 경우 1회 자동 실행
@@ -210,6 +218,7 @@ export default function ChatWidget({
   const handleClear = () => {
     setMessages([]);
     setInput("");
+    setQuoteOpen(false);
   };
 
   const handleClose = () => {
@@ -321,6 +330,16 @@ export default function ChatWidget({
             </div>
           </div>
 
+          {config.quote?.enabled && !quoteOpen && (
+            <button
+              type="button"
+              onClick={() => setQuoteOpen(true)}
+              className="w-full min-h-[46px] rounded-xl bg-coral hover:bg-coral-hover text-white text-sm font-semibold flex items-center justify-center gap-1.5 active:scale-[0.99]"
+            >
+              <Calculator className="w-4 h-4" /> 간단견적 받아보기
+            </button>
+          )}
+
           {/* Suggested Questions List inside Welcome Card when chat is empty */}
           {messages.length === 0 && (
             <div className="pt-1 space-y-2">
@@ -359,9 +378,14 @@ export default function ChatWidget({
               key={msg.id}
               message={msg}
               originalQuestion={prevUserQuestion}
+              onQuote={() => setQuoteOpen(true)}
             />
           );
         })}
+
+        {quoteOpen && config.quote?.enabled && (
+          <QuoteCard brand={brand} config={config.quote} kakaoUrl={config.kakao_chat_url} onClose={() => setQuoteOpen(false)} />
+        )}
 
         {/* Loading Indicator */}
         {isLoading && (
