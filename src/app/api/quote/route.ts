@@ -4,6 +4,7 @@ import { DEFAULT_BRAND } from "@/lib/supabase";
 import { calculateQuote } from "@/lib/quote/calc";
 import { isEmail, normalizePhone } from "@/lib/quote/format";
 import { getActiveRuleset, getQuoteSettings, insertQuote, logQuoteEvent, QUOTE_EVENTS, saveContact, QuoteEventName } from "@/lib/quote/store";
+import { notifyQuoteContact } from "@/lib/quote/notify";
 import type { QuoteInput } from "@/lib/quote/types";
 
 /**
@@ -92,6 +93,7 @@ export async function POST(req: NextRequest) {
       const saved = await saveContact(brand, body.quote_id, visitor, { name, phone, email, consentPrivacy: true, consentMarketing: body.consent_marketing === true }, settings.marketing_retention_days);
       if (!saved) return bad("저장하지 못했습니다. 잠시 후 다시 시도해 주세요.", 500);
       await logQuoteEvent(brand, visitor, "contact", body.quote_id);
+      if (settings.notify_enabled && settings.notify_email) await notifyQuoteContact(brand, body.quote_id, settings.notify_email);
       return NextResponse.json({ ok: true });
     }
 
