@@ -10,8 +10,10 @@ import {
   MessageCircle,
   Plane,
   ChevronRight,
+  Calculator,
 } from "lucide-react";
 import MessageBubble, { ChatMessageItem } from "./MessageBubble";
+import QuoteCard, { QuoteConfig } from "./QuoteCard";
 import {
   DEFAULT_BRAND_CODE,
   DEFAULT_BRAND_LABEL,
@@ -31,6 +33,7 @@ interface WidgetConfig {
   operating_hours: string;
   kakao_chat_url: string;
   homepage: string;
+  quote?: QuoteConfig;
 }
 
 // /api/config를 받기 전·실패했을 때 쓰는 값. 서버와 같은 원본(widgetConfig.ts)을 쓴다.
@@ -70,6 +73,7 @@ export default function ChatWidget({
   const [messages, setMessages] = useState<ChatMessageItem[]>([]);
   const [input, setInput] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [quoteOpen, setQuoteOpen] = useState<boolean>(false);
   const [viewportHeight, setViewportHeight] = useState<string>("100%");
 
   const scrollEndRef = useRef<HTMLDivElement>(null);
@@ -210,6 +214,7 @@ export default function ChatWidget({
   const handleClear = () => {
     setMessages([]);
     setInput("");
+    setQuoteOpen(false);
   };
 
   const handleClose = () => {
@@ -321,6 +326,16 @@ export default function ChatWidget({
             </div>
           </div>
 
+          {config.quote?.enabled && !quoteOpen && (
+            <button
+              type="button"
+              onClick={() => setQuoteOpen(true)}
+              className="w-full min-h-[46px] rounded-xl bg-coral hover:bg-coral-hover text-white text-sm font-semibold flex items-center justify-center gap-1.5 active:scale-[0.99]"
+            >
+              <Calculator className="w-4 h-4" /> 간단견적 받아보기
+            </button>
+          )}
+
           {/* Suggested Questions List inside Welcome Card when chat is empty */}
           {messages.length === 0 && (
             <div className="pt-1 space-y-2">
@@ -347,6 +362,10 @@ export default function ChatWidget({
             </div>
           )}
         </div>
+
+        {quoteOpen && config.quote?.enabled && (
+          <QuoteCard brand={brand} config={config.quote} kakaoUrl={config.kakao_chat_url} onClose={() => setQuoteOpen(false)} />
+        )}
 
         {/* Rendered Conversation Messages */}
         {messages.map((msg, index) => {

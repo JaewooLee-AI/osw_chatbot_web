@@ -160,3 +160,15 @@ describe("관리자 앱(파이썬)과 공통 케이스", () => {
     for (const c of shared.cases) expect(JSON.parse(JSON.stringify(calculateQuote(shared.ruleset, c.input)))).toEqual(c.expected);
   });
 });
+
+describe("화면 표시·입력 확인 도우미", () => {
+  it("1인 금액을 약 ○○만원으로", async () => {
+    const { formatApproxKrw, normalizePhone, isEmail } = await import("../src/lib/quote/format");
+    expect(formatApproxKrw(1511000)).toBe("약 151만원");
+    expect(formatApproxKrw(1515000)).toBe("약 152만원");
+    expect(normalizePhone("010-1234-5678")).toBe("01012345678");
+    expect(normalizePhone("1234")).toBeNull();
+    expect(isEmail("a@b.co")).toBe(true);
+    expect(isEmail("a@b")).toBe(false);
+  });
+});

@@ -40,14 +40,14 @@ export function isAllowedOrigin(req: NextRequest): boolean {
   return originHost === host || EXTRA_ORIGINS.includes(origin.replace(/\/+$/, ""));
 }
 
-function clientKey(req: NextRequest): string {
+export function clientKey(req: NextRequest, scope: string = "chat"): string {
   // Vercel은 x-real-ip·x-forwarded-for를 실제 접속 IP로 덮어써서 보낸다.
   const ip =
     req.headers.get("x-real-ip") ||
     (req.headers.get("x-forwarded-for") || "").split(",")[0].trim() ||
     "unknown";
   // IP 원문은 DB에 남기지 않는다.
-  return "chat:" + createHash("sha256").update(ip).digest("hex").slice(0, 32);
+  return scope + ":" + createHash("sha256").update(ip).digest("hex").slice(0, 32);
 }
 
 let warned = false;
@@ -56,10 +56,10 @@ let warned = false;
  * 한도 안이면 true. Supabase 함수(hit_rate_limit)가 아직 없거나 오류면 챗봇을 멈추지 않도록 통과시킨다
  * (osw_chatbot_admin/supabase/005_rate_limit.sql 실행 전에도 배포할 수 있게).
  */
-export async function withinRateLimit(req: NextRequest): Promise<boolean> {
+export async function withinRateLimit(req: NextRequest, scope: string = "chat"): Promise<boolean> {
   try {
     const { data, error } = await getSupabaseClient().rpc("hit_rate_limit", {
-      p_key: clientKey(req),
+      p_key: clientKey(req, scope),
       p_per_minute: PER_MINUTE,
       p_per_day: PER_DAY,
     });
