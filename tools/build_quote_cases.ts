@@ -17,6 +17,7 @@ for (const courseId of ["SZ4D", "HK4D", "HK3D"]) {
   }
 }
 inputs.push(
+  ...([
   { courseId: "SZ4D", departDate: "2026-12-01", adults: 4, route: "NOPE", today },
   { courseId: "SZ4D", departDate: "2026-12-01", adults: 4, today }, // route 생략
   { courseId: "SZ4D", departDate: "2026-12-01", adults: 4, route: "SHZ", withAir: true, today },
@@ -25,7 +26,8 @@ inputs.push(
   { courseId: "SZ4D", departDate: "2026-12-1", adults: 4, today },
   { courseId: "SZ4D", departDate: "2026-12-01", adults: 0, today },
   { courseId: "SZ4D", departDate: "2026-12-01", adults: 4, children: -1, today },
-  { courseId: "SZ4D", departDate: "2026-12-01", adults: 4.9 as number, today },
+  { courseId: "SZ4D", departDate: "2026-12-01", adults: 4.9, today },
+] as QuoteInput[]),
 );
 const cases = inputs.map((input) => ({ input, expected: JSON.parse(JSON.stringify(calculateQuote(FAKE, input))) }));
 writeFileSync("tests/quote_cases.json", JSON.stringify({ ruleset: FAKE, cases }, null, 1) + "\n");
